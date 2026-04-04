@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/katielynch/static/css/main.a53fc1ee.css",
+    "main.js": "/katielynch/static/js/main.c3a4d1ad.js",
+    "static/js/453.e397cd4b.chunk.js": "/katielynch/static/js/453.e397cd4b.chunk.js",
+    "index.html": "/katielynch/index.html",
+    "main.a53fc1ee.css.map": "/katielynch/static/css/main.a53fc1ee.css.map",
+    "main.c3a4d1ad.js.map": "/katielynch/static/js/main.c3a4d1ad.js.map",
+    "453.e397cd4b.chunk.js.map": "/katielynch/static/js/453.e397cd4b.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a53fc1ee.css",
+    "static/js/main.c3a4d1ad.js"
+  ]
+}
