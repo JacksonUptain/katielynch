@@ -1,15 +1,17 @@
 {
   "files": {
-    "main.css": "/katielynch/static/css/main.a53fc1ee.css",
-    "main.js": "/katielynch/static/js/main.fe09c6de.js",
+    "main.css": "/katielynch/static/css/main.53adf68f.css",
+    "main.js": "/katielynch/static/js/main.5fb5a1b4.js",
     "static/js/453.e397cd4b.chunk.js": "/katielynch/static/js/453.e397cd4b.chunk.js",
+    "static/media/capturingLiteracy.png": "/katielynch/static/media/capturingLiteracy.b304409414c8fbffc11e.png",
+    "static/media/Experienced_badge_rectangle.png": "/katielynch/static/media/Experienced_badge_rectangle.c40639d0b60179e094c8.png",
     "index.html": "/katielynch/index.html",
-    "main.a53fc1ee.css.map": "/katielynch/static/css/main.a53fc1ee.css.map",
-    "main.fe09c6de.js.map": "/katielynch/static/js/main.fe09c6de.js.map",
+    "main.53adf68f.css.map": "/katielynch/static/css/main.53adf68f.css.map",
+    "main.5fb5a1b4.js.map": "/katielynch/static/js/main.5fb5a1b4.js.map",
     "453.e397cd4b.chunk.js.map": "/katielynch/static/js/453.e397cd4b.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.a53fc1ee.css",
-    "static/js/main.fe09c6de.js"
+    "static/css/main.53adf68f.css",
+    "static/js/main.5fb5a1b4.js"
   ]
 }
