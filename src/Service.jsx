@@ -167,6 +167,16 @@ function renderBlocks(blocks) {
       return <p key={index}>{block.text}</p>;
     }
 
+    if (block.type === "link") {
+      return (
+        <p key={index}>
+          <a href={block.url} target="_blank" rel="noopener noreferrer">
+            {block.text}
+          </a>
+        </p>
+      );
+    }
+
     if (block.type === "bullets") {
       return (
         <ul key={index}>
@@ -369,7 +379,8 @@ function parseCourseMarkup(text = "") {
   }
 
   matches.forEach((match) => {
-    const tag = match[1].trim().toLowerCase();
+    const tagRaw = match[1].trim();
+    const tag = tagRaw.split(/\s+/)[0].toLowerCase();
     const value = match[2].trim();
 
     if (tag === "paragraph" || tag === "p") {
@@ -379,6 +390,23 @@ function parseCourseMarkup(text = "") {
 
     if (tag === "bullet" || tag === "li") {
       addBullet(value);
+      return;
+    }
+
+    if (tag === "link") {
+      // parse attribute: to="..."
+      const urlMatch = tagRaw.match(/to\s*=\s*"([^"]+)"/i);
+      const url = urlMatch ? urlMatch[1] : "";
+
+      flushBullets();
+      ensureSection();
+
+      currentSection.blocks.push({
+        type: "link",
+        text: value,
+        url,
+      });
+
       return;
     }
 

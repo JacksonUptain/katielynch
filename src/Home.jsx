@@ -6,21 +6,23 @@ import Image from 'react-bootstrap/Image';
 import Footer from './Footer';
 
 import ServiceCard from "./ServiceCard";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { useFirebaseSection } from './useFirebaseSection';
 
 
 export default function Home() {
 const location = useLocation();
+const isMounted = useRef(false);
 
   useEffect(() => {
-    if (location.state?.scrollTo) {
+    if (isMounted.current && location.state?.scrollTo) {
       const el = document.getElementById(location.state.scrollTo);
       if (el) {
         el.scrollIntoView({ behavior: "smooth" });
       }
     }
+    isMounted.current = true;
   }, [location]);
 
 
@@ -58,9 +60,9 @@ const location = useLocation();
             <h2>My Belief</h2>
             <p>
                 "Many children struggle with reading and writing not because they lack intelligence or potential, 
-                but because they have not yet mastered the foundational skills that support literacy.
+                but because they have not yet mastered the <span className='highlight'>foundational</span> skills that support literacy.
                  When provided with structured, incremental, and multisensory instruction, students can develop the 
-                 tools they need to become confident readers, effective writers, and successful communicators. 
+                 tools they need to become confident readers, effective writers, and <span className='highlight'>successful</span> communicators. 
                  Through patience, understanding, and diagnostic, systematic teaching, even the most discouraged 
                  learners can build strong literacy skills, discover their strengths, and experience the confidence 
                  of academic success."

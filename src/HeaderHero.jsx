@@ -93,26 +93,21 @@ const HeaderHero = ({ image, title, description, currentPageName }) => {
      <Offcanvas show={show} onHide={handleClose} placement="end" id="offcanvasMenu">
   <Offcanvas.Header closeButton>
     <Offcanvas.Title>
-      {/* Use a div to group titles cleanly */}
-      <div className="d-flex flex-column">
-        <h4 className="mb-0">Navigation Menu</h4>
-        <h5 className="text-muted mt-1">{currentPageName}</h5>
+      <div className="d-flex flex-column align-items-center text-center">
+        <h4 className="mb-1 offcanvas-menu-title">Menu</h4>
+        <p className="mb-0 offcanvas-menu-subtitle">{currentPageName}</p>
       </div>
     </Offcanvas.Title>
   </Offcanvas.Header>
 
         <Offcanvas.Body>
           <Nav className="flex-column" >
-            <Link to="/" onClick={handleClose}>Home</Link>
-            
-            <Link to="/" state={{ scrollTo: "bio" }} onClick={handleClose}>
-                About
-            </Link>
-            
-            <Link to="/services" onClick={handleClose}>Services</Link>
-            <Link to="/blog" onClick={handleClose}>Blog</Link>
-            <Link to="/essay" onClick={handleClose}>Essay of the Month</Link>
-            <Link to="/contact" onClick={handleClose}>Contact</Link>
+            <Link className="offcanvas-menu-link" to="/" onClick={handleClose}>Home</Link>
+            <Link className="offcanvas-menu-link" to="/" state={{ scrollTo: "bio" }} onClick={handleClose}>About</Link>
+            <Link className="offcanvas-menu-link" to="/services" onClick={handleClose}>Services</Link>
+            <Link className="offcanvas-menu-link" to="/blog" onClick={handleClose}>Blog</Link>
+            <Link className="offcanvas-menu-link" to="/essay" onClick={handleClose}>Essay of the Month</Link>
+            <Link className="offcanvas-menu-link" to="/contact" onClick={handleClose}>Contact</Link>
           </Nav>
         </Offcanvas.Body>
       </Offcanvas>
