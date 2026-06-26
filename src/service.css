@@ -1,0 +1,28 @@
+@media (max-width: 1000px) {
+  
+
+  .service-card {
+    background-color: white !important;
+    width: 95% !important;
+    max-width: 95% !important;
+    padding: 1rem !important;
+    
+    
+    
+    
+  }
+}
+
+
+@media (max-width: 700px) {
+  
+
+  .services-preview {
+    
+    padding: 0.1rem !important;
+    
+    
+    
+    
+  }
+}

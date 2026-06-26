@@ -1,0 +1,143 @@
+import { useState } from 'react';
+import './App.css';
+import HeaderHero from './HeaderHero';
+import capturingLiteracy from './capturingLiteracy.png';
+import Footer from './Footer';
+import { useFirebaseSection } from './useFirebaseSection';
+
+
+
+export default function Essay() {
+  
+
+const essaysData = useFirebaseSection("Essays").items || [];
+
+const featuredEssay = essaysData.find(e => e.featured) || {
+  title: "Loading",
+  description: "Loading...",
+  preview: "",
+  file: "#",
+  date: "",
+};
+
+const otherEssays = essaysData.filter(e => !e.featured);
+console.log("Featured essay:", otherEssays);
+
+  
+
+
+
+
+  const [search, setSearch] = useState("");
+  const [sort, setSort] = useState("newest");
+
+
+
+
+  const filteredEssays = [...otherEssays]
+  .filter(e =>
+    e.title.toLowerCase().includes(search.toLowerCase()) ||
+    e.description.toLowerCase().includes(search.toLowerCase())
+  )
+  .sort((a, b) => {
+    switch (sort) {
+      case "newest":
+        return new Date(b.date) - new Date(a.date);
+      case "oldest":
+        return new Date(a.date) - new Date(b.date);
+      case "az":
+        return a.title.localeCompare(b.title);
+      case "za":
+        return b.title.localeCompare(a.title);
+      default:
+        return 0;
+    }
+  });
+
+  return (
+    <div>
+
+      <HeaderHero
+        image={capturingLiteracy}
+        title={"Essay of the Month"}
+        description={"Read the latest essay written by my students"}
+        currentPageName={"Essay of the Month"}
+      />
+
+      
+      <section className="essay-hero">
+        <div className="essay-preview">
+          {console.log("Featured essay:", essaysData)}
+          <a
+            href={featuredEssay.file}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="preview-link"
+          >
+            <div className="preview-text">
+              {featuredEssay.preview}
+            </div>
+
+            <div className="preview-overlay">
+              <span>View Essay</span>
+            </div>
+          </a>
+        </div>
+
+        <div className="essay-info">
+          <h1>{featuredEssay.title}</h1>
+          <p>{featuredEssay.description}</p>
+        </div>
+      </section>
+
+      {/* 🔍 SEARCH + FILTER */}
+      <div className="essay-controls">
+        <input
+          type="text"
+          placeholder="Search essays..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+
+        <select value={sort} onChange={(e) => setSort(e.target.value)}>
+          <option value="newest">Newest → Oldest</option>
+          <option value="oldest">Oldest → Newest</option>
+          <option value="az">A → Z</option>
+          <option value="za">Z → A</option>
+        </select>
+      </div>
+
+      
+      <div className="essay-container">
+       
+        {filteredEssays.map((essay, index) => (
+          
+          <a
+            key={index}
+            href={essay.file}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="essay-card-link"
+          >
+            
+            <div className="essay-card">
+              <div className="essay-title">{essay.title}</div>
+              <div className="essay-date">{essay.date}</div>
+
+              <p className="essay-preview-text">
+                {essay.preview}
+              </p>
+
+              <div className="essay-hover">
+                View Essay
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <Footer />
+
+    </div>
+  );
+}
