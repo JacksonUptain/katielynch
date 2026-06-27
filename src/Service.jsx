@@ -4,6 +4,7 @@ import HeaderHero from './HeaderHero';
 
 import Footer from './Footer';
 import { useFirebaseSection } from './useFirebaseSection';
+import { parseCourseMarkup } from './courseMarkup';
 function FolderIcon() {
   return (
     <svg viewBox="0 0 24 24">
@@ -83,18 +84,113 @@ function UsersIcon() {
   );
 }
 
-function InfoIcon() {
-  return (
-    <svg viewBox="0 0 24 24">
-      <circle cx="12" cy="12" r="9" />
-      <path d="M12 10v6" />
-      <path d="M12 7h.01" />
-    </svg>
-  );
-}
+const sectionDefinitions = {
+  description: {
+    label: 'Course Description',
+    icon: FolderIcon,
+    colorClass: 'blue',
+    layout: 'detail',
+  },
+  price: {
+    label: 'Price',
+    icon: PriceIcon,
+    colorClass: 'green',
+    layout: 'quick',
+  },
+  dates: {
+    label: 'Dates',
+    icon: CalendarIcon,
+    colorClass: 'orange',
+    layout: 'quick',
+  },
+  schedule: {
+    label: 'Schedule',
+    icon: CalendarIcon,
+    colorClass: 'purple',
+    layout: 'quick',
+  },
+  'grade-level': {
+    label: 'Grade Level',
+    icon: UsersIcon,
+    colorClass: 'blue',
+    layout: 'quick',
+  },
+  grade: {
+    label: 'Grade Level',
+    icon: UsersIcon,
+    colorClass: 'blue',
+    layout: 'quick',
+  },
+  homework: {
+    label: 'Homework',
+    icon: PencilIcon,
+    colorClass: 'yellow',
+    layout: 'detail',
+  },
+  material: {
+    label: 'Class Materials',
+    icon: BookIcon,
+    colorClass: 'teal',
+    layout: 'detail',
+  },
+  materials: {
+    label: 'Class Materials',
+    icon: BookIcon,
+    colorClass: 'teal',
+    layout: 'detail',
+  },
+  technology: {
+    label: 'Technology & Platforms',
+    icon: LaptopIcon,
+    colorClass: 'purple',
+    layout: 'detail',
+  },
+  platforms: {
+    label: 'Technology & Platforms',
+    icon: LaptopIcon,
+    colorClass: 'purple',
+    layout: 'detail',
+  },
+  policies: {
+    label: 'Payment Terms and Policies',
+    icon: AnnouncementIcon,
+    colorClass: 'red',
+    layout: 'detail',
+  },
+  policy: {
+    label: 'Payment Terms and Policies',
+    icon: AnnouncementIcon,
+    colorClass: 'red',
+    layout: 'detail',
+  },
+  'class-format': {
+    label: 'Class Format',
+    icon: UsersIcon,
+    colorClass: 'orange',
+    layout: 'detail',
+  },
+  feedback: {
+    label: 'Feedback & Resubmissions',
+    icon: PencilIcon,
+    colorClass: 'green',
+    layout: 'detail',
+  },
+  vocabulary: {
+    label: 'Vocabulary',
+    icon: BookIcon,
+    colorClass: 'teal',
+    layout: 'detail',
+  },
+  grading: {
+    label: 'Grading',
+    icon: PencilIcon,
+    colorClass: 'blue',
+    layout: 'detail',
+  },
+};
 
 function CourseDetailsMarkup({ text }) {
-  const sections = parseCourseMarkup(text);
+  const sections = parseCourseMarkup(text, sectionDefinitions);
 
   if (!sections.length) return null;
 
@@ -170,7 +266,7 @@ function renderBlocks(blocks) {
     if (block.type === "link") {
       return (
         <p key={index}>
-          <a href={block.url} target="_blank" rel="noopener noreferrer">
+          <a href={block.url || undefined} target="_blank" rel="noopener noreferrer">
             {block.text}
           </a>
         </p>
@@ -191,239 +287,6 @@ function renderBlocks(blocks) {
   });
 }
 
-function parseCourseMarkup(text = "") {
-  if (!text || typeof text !== "string") return [];
-
- const sectionMap = {
-  description: {
-    label: "Course Description",
-    icon: FolderIcon,
-    colorClass: "blue",
-    layout: "detail",
-  },
-  price: {
-    label: "Price",
-    icon: PriceIcon,
-    colorClass: "green",
-    layout: "quick",
-  },
-  dates: {
-    label: "Dates",
-    icon: CalendarIcon,
-    colorClass: "orange",
-    layout: "quick",
-  },
-  schedule: {
-    label: "Schedule",
-    icon: CalendarIcon,
-    colorClass: "purple",
-    layout: "quick",
-  },
-  "grade-level": {
-    label: "Grade Level",
-    icon: UsersIcon,
-    colorClass: "blue",
-    layout: "quick",
-  },
-  grade: {
-    label: "Grade Level",
-    icon: UsersIcon,
-    colorClass: "blue",
-    layout: "quick",
-  },
-  homework: {
-    label: "Homework",
-    icon: PencilIcon,
-    colorClass: "yellow",
-    layout: "detail",
-  },
-  material: {
-    label: "Class Materials",
-    icon: BookIcon,
-    colorClass: "teal",
-    layout: "detail",
-  },
-  materials: {
-    label: "Class Materials",
-    icon: BookIcon,
-    colorClass: "teal",
-    layout: "detail",
-  },
-  technology: {
-    label: "Technology & Platforms",
-    icon: LaptopIcon,
-    colorClass: "purple",
-    layout: "detail",
-  },
-  platforms: {
-    label: "Technology & Platforms",
-    icon: LaptopIcon,
-    colorClass: "purple",
-    layout: "detail",
-  },
-  policies: {
-    label: "Payment Terms and Policies",
-    icon: AnnouncementIcon,
-    colorClass: "red",
-    layout: "detail",
-  },
-  policy: {
-    label: "Payment Terms and Policies",
-    icon: AnnouncementIcon,
-    colorClass: "red",
-    layout: "detail",
-  },
-  "class-format": {
-    label: "Class Format",
-    icon: UsersIcon,
-    colorClass: "orange",
-    layout: "detail",
-  },
-  feedback: {
-    label: "Feedback & Resubmissions",
-    icon: PencilIcon,
-    colorClass: "green",
-    layout: "detail",
-  },
-  vocabulary: {
-    label: "Vocabulary",
-    icon: BookIcon,
-    colorClass: "teal",
-    layout: "detail",
-  },
-  grading: {
-    label: "Grading",
-    icon: PencilIcon,
-    colorClass: "blue",
-    layout: "detail",
-  },
-};
-
-  const sections = [];
-  let currentSection = null;
-  let currentBullets = [];
-
-  const flushBullets = () => {
-    if (currentSection && currentBullets.length > 0) {
-      currentSection.blocks.push({
-        type: "bullets",
-        items: [...currentBullets],
-      });
-
-      currentBullets = [];
-    }
-  };
-
-  const startSection = (tag, value = "") => {
-    flushBullets();
-
-    const settings = sectionMap[tag] || {
-  label: makePrettyLabel(tag),
-  icon: InfoIcon,
-  colorClass: "blue",
-  layout: "detail",
-};
-    currentSection = {
-      tag,
-      label: settings.label,
-      icon: settings.icon,
-      colorClass: settings.colorClass,
-      layout: settings.layout,
-      blocks: [],
-    };
-
-    sections.push(currentSection);
-
-    if (value.trim()) {
-      currentSection.blocks.push({
-        type: "paragraph",
-        text: value.trim(),
-      });
-    }
-  };
-
-  const ensureSection = () => {
-    if (!currentSection) {
-      startSection("description");
-    }
-  };
-
-  const addParagraph = (value) => {
-    const cleaned = value.trim();
-    if (!cleaned) return;
-
-    flushBullets();
-    ensureSection();
-
-    currentSection.blocks.push({
-      type: "paragraph",
-      text: cleaned,
-    });
-  };
-
-  const addBullet = (value) => {
-    const cleaned = value.trim();
-    if (!cleaned) return;
-
-    ensureSection();
-    currentBullets.push(cleaned);
-  };
-
-  const tagRegex = /<([^>]+)>([^<]*)/g;
-  const matches = [...text.matchAll(tagRegex)];
-
-  if (matches.length === 0) {
-    startSection("description", text);
-    flushBullets();
-    return sections;
-  }
-
-  matches.forEach((match) => {
-    const tagRaw = match[1].trim();
-    const tag = tagRaw.split(/\s+/)[0].toLowerCase();
-    const value = match[2].trim();
-
-    if (tag === "paragraph" || tag === "p") {
-      addParagraph(value);
-      return;
-    }
-
-    if (tag === "bullet" || tag === "li") {
-      addBullet(value);
-      return;
-    }
-
-    if (tag === "link") {
-      // parse attribute: to="..."
-      const urlMatch = tagRaw.match(/to\s*=\s*"([^"]+)"/i);
-      const url = urlMatch ? urlMatch[1] : "";
-
-      flushBullets();
-      ensureSection();
-
-      currentSection.blocks.push({
-        type: "link",
-        text: value,
-        url,
-      });
-
-      return;
-    }
-
-    startSection(tag, value);
-  });
-
-  flushBullets();
-  return sections;
-}
-
-function makePrettyLabel(tag) {
-  return tag
-    .replace(/-/g, " ")
-    .replace(/\b\w/g, (letter) => letter.toUpperCase());
-}
-
-
 export default function Service() {
   const { service } = useParams();
 
@@ -433,7 +296,6 @@ export default function Service() {
   const currentService = servicesData.find(
   (s) => s.title?.toLowerCase() === service?.toLowerCase()
 );
-  console.log(service, currentService, servicesData);
 
   if (!currentService) {
     return (

@@ -1,16 +1,18 @@
 import { useNavigate } from "react-router-dom";
 import "./ServiceCard.css";
 
-export default function ServiceCard({ title, description, image, link, reverse }) {
+export default function ServiceCard({ title, description, image, link, reverse, className = '', style = {} }) {
   const navigate = useNavigate();
 
-  
-
   return (
-    
     <div
-      className={`service-card ${reverse ? "reverse" : ""}`}
-      onClick={() => navigate(link)}
+      className={`service-card ${reverse ? "reverse" : ""} ${className}`}
+      style={style}
+      onClick={() => {
+        if (link) {
+          navigate(link);
+        }
+      }}
     >
       <div className="service-image">
         {image && <img src={image} alt={title} style={{outline: '1px solid black', outlineOffset: '-5px'}}/>}

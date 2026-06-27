@@ -12,8 +12,8 @@ import { useFirebaseSection } from './useFirebaseSection';
 
 
 export default function Home() {
-const location = useLocation();
-const isMounted = useRef(false);
+  const location = useLocation();
+  const isMounted = useRef(false);
 
   useEffect(() => {
     if (isMounted.current && location.state?.scrollTo) {
@@ -25,13 +25,45 @@ const isMounted = useRef(false);
     isMounted.current = true;
   }, [location]);
 
+  useEffect(() => {
+    const revealElements = document.querySelectorAll('.reveal-on-scroll');
+    if (!revealElements.length) return;
+
+    const revealTarget = (entry, obs) => {
+      if (entry.isIntersecting || entry.intersectionRatio > 0) {
+        entry.target.classList.add('is-visible');
+        obs.unobserve(entry.target);
+      }
+    };
+
+    const observer = new IntersectionObserver(
+      (entries, obs) => {
+        entries.forEach((entry) => revealTarget(entry, obs));
+      },
+      {
+        threshold: 0.08,
+        rootMargin: '0px 0px -90px 0px',
+      }
+    );
+
+    revealElements.forEach((el, index) => {
+      el.style.transitionDelay = `${index * 80}ms`;
+      observer.observe(el);
+    });
+
+    if (!window.IntersectionObserver) {
+      revealElements.forEach((el) => el.classList.add('is-visible'));
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   const servicesData = useFirebaseSection("Services").items || [];
 
   return (
     <div>
       <HeaderHero image={capturingLiteracy} title={"Katie Lynch"} description={"Certified Academic Language Therapist | IEW Instructor | Dyslexia Specialist"} currentPageName={"Home"}  />
-      <section id="bio" class="bio-section">
+      <section id="bio" className="bio-section reveal-on-scroll">
             <h2>About Katie Lynch</h2>
             <div className="bio-content">
               <div className="bio-image-wrapper">
@@ -56,7 +88,7 @@ const isMounted = useRef(false);
               </div>
             </div>
       </section>
-      <section id="quote" class="quote-section">
+      <section id="quote" className="quote-section reveal-on-scroll">
             <h2>My Belief</h2>
             <p>
                 "Many children struggle with reading and writing not because they lack intelligence or potential, 
@@ -79,7 +111,7 @@ const isMounted = useRef(false);
                 <h2>Services</h2>
                 <p>
                   As a Certified Academic Language Therapist with a deep understanding of various learning styles, 
-                  I employ a <span class="highlight">compassionate</span> and <span class="highlight">tailored</span> approach to meet children where they are academically. 
+                  I employ a <span className="highlight">compassionate</span> and <span className="highlight">tailored</span> approach to meet children where they are academically. 
                   I focus on each student’s strengths to help them build the confidence and independence needed to achieve 
                   academic success.  
                 </p>
@@ -92,13 +124,11 @@ const isMounted = useRef(false);
                     to={`/services`}
                     style={{ textDecoration: "none" }}
                   >
-                    {console.log("Index: ", index)}
                     <ServiceCard
                       title={service.title}
                       description={service["short-description"]}
                       image={service.image}
                       reverse={index % 2 === 1}
-                      
                     />
                   </Link>
                 ))}
