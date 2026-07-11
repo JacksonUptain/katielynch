@@ -33,30 +33,32 @@ creates the deployable site in `out/`.
 ## GitHub Pages
 
 This repo includes a GitHub Actions workflow at
-`.github/workflows/deploy-github-pages.yml`.
+`.github/workflows/nextjs.yml`.
 
 To deploy:
 
 1. Push these changes to GitHub.
 2. In the GitHub repo, open `Settings -> Pages`.
 3. Set `Source` to `GitHub Actions`.
-4. Push to `main` or `master`, or manually run the workflow from the Actions tab.
+4. Push to `source`, `main`, or `master`, or manually run the workflow from the Actions tab.
 
 For the current repository, the workflow builds for:
 
 ```text
-https://jacksonuptain.github.io/katielynch/
+https://capturingliteracy.com/
 ```
 
-If you use a custom domain instead, update the workflow environment variables:
+The workflow publishes `out/.nojekyll` and `out/CNAME` so GitHub Pages serves the
+static Next.js export at the custom domain. The matching site-wide SEO URL lives
+in `src/seo.config.json`.
+
+If you ever switch back to a project page instead, update the workflow
+environment variables:
 
 ```yaml
-NEXT_PUBLIC_SITE_URL: https://www.capturingliteracy.com
-NEXT_PUBLIC_BASE_PATH:
+NEXT_PUBLIC_SITE_URL: https://jacksonuptain.github.io
+NEXT_PUBLIC_BASE_PATH: /katielynch
 ```
-
-For a custom domain, also add the domain in GitHub Pages settings and include a
-`CNAME` file in the published artifact.
 
 ## SEO
 
