@@ -2,6 +2,8 @@ import { getFirebaseSection } from "../src/firebaseData";
 import { absoluteUrl, getPageSeo } from "../src/seo";
 import { servicePath } from "../src/routes";
 
+export const dynamic = "force-static";
+
 const staticPageKeys = ["home", "about", "services", "blog", "essay", "contact"];
 
 export default async function sitemap() {

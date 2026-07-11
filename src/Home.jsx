@@ -9,6 +9,7 @@ import { useEffect } from "react";
 import Link from "next/link";
 import { useFirebaseSection } from './useFirebaseSection';
 import { servicePath } from "./routes";
+import { assetPath } from "./sitePaths";
 
 
 export default function Home({ initialServices = [] }) {
@@ -50,7 +51,7 @@ export default function Home({ initialServices = [] }) {
 
   return (
     <div>
-      <HeaderHero image="/images/capturingLiteracy.png" title={"Katie Lynch"} description={"Certified Academic Language Therapist | IEW Instructor | Dyslexia Specialist"} currentPageName={"Home"}  />
+      <HeaderHero image={assetPath("/images/capturingLiteracy.png")} title={"Katie Lynch"} description={"Certified Academic Language Therapist | IEW Instructor | Dyslexia Specialist"} currentPageName={"Home"}  />
       <section id="bio" className="bio-section reveal-on-scroll">
             <h2>About Katie Lynch</h2>
             <div className="bio-content">
@@ -94,7 +95,7 @@ export default function Home({ initialServices = [] }) {
             <section className="services-preview quote-section reveal-on-scroll" style={{
           borderLeft: "0px",
           backgroundImage:
-            'url("/images/HBG.webp")'
+            `url("${assetPath("/images/HBG.webp")}")`
         }}>
                 <h2> Services</h2>
                 <p>

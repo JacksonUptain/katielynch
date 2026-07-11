@@ -6,6 +6,7 @@ import Footer from './Footer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClock } from '@fortawesome/free-solid-svg-icons';
 import { useFirebaseSection } from './useFirebaseSection';
+import { assetPath } from './sitePaths';
 
 const truncateText = (text, maxLength = 300) => {
   text = String(text || "");
@@ -62,7 +63,7 @@ export default function Blog({ initialBlogs = [] }) {
     <div>
 
       <HeaderHero
-        image="/images/capturingLiteracy.png"
+        image={assetPath("/images/capturingLiteracy.png")}
         title={"Blog"}
         description={"Explore insights, strategies, and stories about literacy"}
         currentPageName={"Blog"}

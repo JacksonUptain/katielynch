@@ -24,8 +24,39 @@ Open `http://localhost:3000`.
 
 ```bash
 npm run build
-npm run start
+npm run serve
 ```
+
+This project is configured for a static Next.js export, so `npm run build`
+creates the deployable site in `out/`.
+
+## GitHub Pages
+
+This repo includes a GitHub Actions workflow at
+`.github/workflows/deploy-github-pages.yml`.
+
+To deploy:
+
+1. Push these changes to GitHub.
+2. In the GitHub repo, open `Settings -> Pages`.
+3. Set `Source` to `GitHub Actions`.
+4. Push to `main` or `master`, or manually run the workflow from the Actions tab.
+
+For the current repository, the workflow builds for:
+
+```text
+https://jacksonuptain.github.io/katielynch/
+```
+
+If you use a custom domain instead, update the workflow environment variables:
+
+```yaml
+NEXT_PUBLIC_SITE_URL: https://www.capturingliteracy.com
+NEXT_PUBLIC_BASE_PATH:
+```
+
+For a custom domain, also add the domain in GitHub Pages settings and include a
+`CNAME` file in the published artifact.
 
 ## SEO
 
@@ -37,7 +68,7 @@ Site-wide SEO lives in [src/seo.config.json](src/seo.config.json). Edit that fil
 - Open Graph image
 - per-page titles, descriptions, and canonical paths
 
-The app also generates `/robots.txt` and `/sitemap.xml` from the same SEO helpers. Service detail URLs are pulled from Firebase and added to the sitemap when Firebase is reachable during build/runtime.
+The app also generates `/robots.txt`, `/manifest.webmanifest`, and `/sitemap.xml` from the same SEO helpers. Service detail URLs are pulled from Firebase and added to the sitemap when Firebase is reachable during build/runtime.
 
 ## Firebase
 

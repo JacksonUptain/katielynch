@@ -1,4 +1,3 @@
-import { notFound } from "next/navigation";
 import Service from "../../../src/Service";
 import {
   getFirebaseSection,
@@ -11,7 +10,7 @@ import {
   serviceSlug,
 } from "../../../src/routes";
 
-export const dynamicParams = true;
+export const dynamicParams = false;
 
 export async function generateStaticParams() {
   const services = await getFirebaseSection("Services");
@@ -49,10 +48,6 @@ export default async function ServicePage({ params }) {
   const { service } = await params;
   const result = await getFirebaseSectionResult("Services");
   const currentService = findServiceByRouteParam(result.items, service);
-
-  if (result.ok && result.items.length > 0 && !currentService) {
-    notFound();
-  }
 
   return (
     <Service

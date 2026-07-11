@@ -1,4 +1,5 @@
 import seoConfig from "./seo.config.json";
+import { assetPath, basePath } from "./sitePaths";
 
 export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || seoConfig.siteUrl;
 
@@ -7,8 +8,17 @@ function normalizePath(path = "/") {
   return path.startsWith("/") ? path : `/${path}`;
 }
 
+function withBasePath(path = "/") {
+  const normalizedPath = normalizePath(path);
+  if (!basePath || normalizedPath.startsWith(`${basePath}/`) || normalizedPath === basePath) {
+    return normalizedPath;
+  }
+
+  return `${basePath}${normalizedPath === "/" ? "" : normalizedPath}`;
+}
+
 export function absoluteUrl(path = "/") {
-  return new URL(normalizePath(path), siteUrl).toString();
+  return new URL(withBasePath(path), siteUrl).toString();
 }
 
 export function getPageSeo(pageKey) {
@@ -23,8 +33,8 @@ export function buildMetadata(pageKey, overrides = {}) {
   const description = String(
     overrides.description || page.description || seoConfig.defaultDescription
   ).trim();
-  const path = normalizePath(overrides.path || page.path || "/");
-  const image = overrides.image || page.image || seoConfig.defaultImage;
+  const path = withBasePath(overrides.path || page.path || "/");
+  const image = assetPath(overrides.image || page.image || seoConfig.defaultImage);
   const robots = overrides.robots || page.robots || { index: true, follow: true };
 
   return {
@@ -32,10 +42,10 @@ export function buildMetadata(pageKey, overrides = {}) {
     applicationName: seoConfig.siteName,
     title,
     description,
-    manifest: "/manifest.json",
+    manifest: withBasePath("/manifest.webmanifest"),
     icons: {
-      icon: "/favicon.ico",
-      apple: seoConfig.defaultImage,
+      icon: assetPath("/favicon.ico"),
+      apple: assetPath(seoConfig.defaultImage),
     },
     alternates: {
       canonical: path,

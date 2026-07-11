@@ -6,6 +6,7 @@ import Footer from './Footer';
 import { useFirebaseSection } from './useFirebaseSection';
 import Link from "next/link";
 import { servicePath } from "./routes";
+import { assetPath } from "./sitePaths";
 
 export default function Services({ initialServices = [] }) {
   const servicesData = useFirebaseSection("Services", initialServices).items || [];
@@ -14,7 +15,7 @@ export default function Services({ initialServices = [] }) {
     <div>
       
       <HeaderHero
-        image="/images/capturingLiteracy.png"
+        image={assetPath("/images/capturingLiteracy.png")}
         title={"Services"}
         description={"provided by Katie Lynch"}
         currentPageName={"Services"}

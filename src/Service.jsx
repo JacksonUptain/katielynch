@@ -9,6 +9,7 @@ import Footer from './Footer';
 import { useFirebaseSection } from './useFirebaseSection';
 import { parseCourseMarkup } from './courseMarkup';
 import { findServiceByRouteParam } from "./routes";
+import { assetPath } from "./sitePaths";
 function FolderIcon() {
   return (
     <svg viewBox="0 0 24 24">
@@ -307,7 +308,7 @@ export default function Service({ routeService, initialServices = [], initialSer
     return (
       <div style={{ padding: "2rem" }}>
         <HeaderHero
-          image="/images/capturingLiteracy.png"
+          image={assetPath("/images/capturingLiteracy.png")}
           title={"Loading service"}
           description={"Loading the requested service details."}
           currentPageName={"Loading service"}
@@ -323,7 +324,7 @@ export default function Service({ routeService, initialServices = [], initialSer
       <div>
         
         <HeaderHero
-          image="/images/capturingLiteracy.png"
+          image={assetPath("/images/capturingLiteracy.png")}
           title={"Service not found"}
           description={"The requested service was not found."}
           currentPageName={"Service not found"}
@@ -343,7 +344,7 @@ export default function Service({ routeService, initialServices = [], initialSer
     return (
       <div>
         <HeaderHero
-          image='/images/capturingLiteracy.png'
+          image={assetPath("/images/capturingLiteracy.png")}
           title={`${currentService.title}`}
           description={currentService.description}
           currentPageName={currentService.title}

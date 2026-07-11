@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { assetPath } from "./sitePaths";
 
 
 
@@ -16,7 +17,7 @@ export default function Footer() {
                 rel="noopener noreferrer"
               >
                 <img 
-                  src="/images/IEW.png"
+                  src={assetPath("/images/IEW.png")}
                   alt="Experience Instructor Award" 
                   className="footer-award"
                 />
@@ -28,7 +29,7 @@ export default function Footer() {
                 rel="noopener noreferrer"
               >
                 <img 
-                  src="/images/ALTA.jpg"
+                  src={assetPath("/images/ALTA.jpg")}
                   alt="Alta Logo & Link" 
                   className="footer-award footer-award-framed"
                 />

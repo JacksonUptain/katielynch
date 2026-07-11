@@ -4,6 +4,7 @@ import { useState } from 'react';
 import HeaderHero from './HeaderHero';
 import Footer from './Footer';
 import { useFirebaseSection } from './useFirebaseSection';
+import { assetPath } from './sitePaths';
 
 
 
@@ -57,7 +58,7 @@ const otherEssays = essaysData.filter(e => !e.featured);
     <div>
 
       <HeaderHero
-        image="/images/capturingLiteracy.png"
+        image={assetPath("/images/capturingLiteracy.png")}
         title={"Essay of the Month"}
         description={"Read the latest essay written by my students"}
         currentPageName={"Essay of the Month"}

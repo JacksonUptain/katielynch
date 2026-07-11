@@ -3,12 +3,13 @@
 import Image from "react-bootstrap/Image";
 import Footer from "./Footer";
 import HeaderHero from "./HeaderHero";
+import { assetPath } from "./sitePaths";
 
 export default function About() {
   return (
     <div>
       <HeaderHero
-        image="/images/capturingLiteracy.png"
+        image={assetPath("/images/capturingLiteracy.png")}
         title={"About Katie Lynch"}
         description={"Certified Academic Language Therapist | IEW Instructor | Dyslexia Specialist"}
         currentPageName={"About"}

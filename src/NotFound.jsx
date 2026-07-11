@@ -3,11 +3,12 @@ import Link from "next/link";
 import HeaderHero from './HeaderHero';
 
 import Footer from "./Footer";
+import { assetPath } from "./sitePaths";
 
 export default function NotFound() {
   return (
     <div>
-      <HeaderHero image="/images/capturingLiteracy.png" title={"404"} description={"Page Not Found"} currentPageName={"404"} />
+      <HeaderHero image={assetPath("/images/capturingLiteracy.png")} title={"404"} description={"Page Not Found"} currentPageName={"404"} />
       
         <div style={{ textAlign: "center", marginTop: "5rem" }}>
        
