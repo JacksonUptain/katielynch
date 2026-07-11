@@ -1,19 +1,17 @@
-import './App.css';
 import HeaderHero from './HeaderHero';
-import capturingLiteracy from './capturingLiteracy.png';
 import Footer from './Footer';
 
 export default function Contact() {
   return (
     <div>
       <HeaderHero
-        image={capturingLiteracy}
+        image="/images/capturingLiteracy.png"
         title={"Contact Katie Lynch"}
         description={"How can I help your student succeed?"}
         currentPageName={"Contact"}
       />
 
-      <section className="contact-section" style={{ maxWidth: '800px', margin: '3rem auto', lineHeight: '1.6' }}>
+      <section className="contact-section">
         <p>
           I would love to hear from you! Whether you have questions about my services or want to discuss your student's needs, please don't hesitate to reach out.
         </p>

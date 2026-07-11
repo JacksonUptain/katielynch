@@ -1,10 +1,14 @@
-import { useParams, Link } from 'react-router-dom';
-import './App.css';
+"use client";
+
+import Link from "next/link";
+import { useParams } from "next/navigation";
+import { ArrowLeft } from "react-bootstrap-icons";
 import HeaderHero from './HeaderHero';
 
 import Footer from './Footer';
 import { useFirebaseSection } from './useFirebaseSection';
 import { parseCourseMarkup } from './courseMarkup';
+import { findServiceByRouteParam } from "./routes";
 function FolderIcon() {
   return (
     <svg viewBox="0 0 24 24">
@@ -287,19 +291,36 @@ function renderBlocks(blocks) {
   });
 }
 
-export default function Service() {
-  const { service } = useParams();
+export default function Service({ routeService, initialServices = [], initialService = null }) {
+  const params = useParams();
+  const service = routeService || params?.service || "";
 
-  // You can replace this with real data or fetch from JSON/API
-  const servicesData = useFirebaseSection("Services").items || [];
+  const { items: servicesData, loading } = useFirebaseSection(
+    "Services",
+    initialServices
+  );
 
-  const currentService = servicesData.find(
-  (s) => s.title?.toLowerCase() === service?.toLowerCase()
-);
+  const currentService =
+    findServiceByRouteParam(servicesData || [], service) || initialService;
+
+  if (!currentService && loading) {
+    return (
+      <div style={{ padding: "2rem" }}>
+        <HeaderHero
+          image="/images/capturingLiteracy.png"
+          title={"Loading service"}
+          description={"Loading the requested service details."}
+          currentPageName={"Loading service"}
+        />
+        <p style={{ margin: "50px" }}>Loading service details...</p>
+        <Footer />
+      </div>
+    );
+  }
 
   if (!currentService) {
     return (
-      <div style={{ padding: '2rem' }}>
+      <div>
         
         <HeaderHero
           image="/images/capturingLiteracy.png"
@@ -307,7 +328,12 @@ export default function Service() {
           description={"The requested service was not found."}
           currentPageName={"Service not found"}
         />
-        <Link to="/services" >Back to Services</Link>
+        <div className="service-page-toolbar">
+          <Link className="service-return-button" href="/services">
+            <ArrowLeft className="service-return-icon" aria-hidden="true" />
+            Return to services
+          </Link>
+        </div>
         
         <p style={{margin: "50px"}}>Service "{service}" not found.</p>
         <Footer />
@@ -324,7 +350,12 @@ export default function Service() {
         />
 
         
-        <Link to="/services">Back to Services</Link>
+        <div className="service-page-toolbar">
+          <Link className="service-return-button" href="/services">
+            <ArrowLeft className="service-return-icon" aria-hidden="true" />
+            Return to services
+          </Link>
+        </div>
         
         <section className="course-description">
           <h2>Course Details</h2>

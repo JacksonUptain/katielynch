@@ -1,6 +1,4 @@
-
-import { Link } from 'react-router-dom';
-import './App.css';
+import Link from "next/link";
 
 
 
@@ -32,21 +30,20 @@ export default function Footer() {
                 <img 
                   src="/images/ALTA.jpg"
                   alt="Alta Logo & Link" 
-                  className="footer-award"
-                  style={{borderRadius: "5px", border: "20px solid white"}}
+                  className="footer-award footer-award-framed"
                 />
               </a>
             </div>
             
             
             <div className="footer-links">
-              <Link to="/" state={{ scrollTo: "bio" }}>
+              <Link href="/about">
                 About
               </Link>
-              <Link to="/services">Services</Link>
-              <Link to="/contact">Contact</Link>
-              <Link to="/blog">Blog</Link>
-              <Link to="/essay">Essay of the Month</Link>
+              <Link href="/services">Services</Link>
+              <Link href="/contact">Contact</Link>
+              <Link href="/blog">Blog</Link>
+              <Link href="/essay">Essay of the Month</Link>
 
             </div>
           </div>

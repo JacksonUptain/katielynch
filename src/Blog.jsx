@@ -1,13 +1,14 @@
+"use client";
+
 import { useState } from 'react';
-import './App.css';
 import HeaderHero from './HeaderHero';
-import capturingLiteracy from './capturingLiteracy.png';
 import Footer from './Footer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClock } from '@fortawesome/free-solid-svg-icons';
 import { useFirebaseSection } from './useFirebaseSection';
 
 const truncateText = (text, maxLength = 300) => {
+  text = String(text || "");
   if (text.length <= maxLength) return text;
 
   const trimmed = text.slice(0, maxLength);
@@ -16,7 +17,7 @@ const truncateText = (text, maxLength = 300) => {
   return (lastSpace > 0 ? trimmed.slice(0, lastSpace) : trimmed) + "...";
 };
 
-export default function Blog() {
+export default function Blog({ initialBlogs = [] }) {
 
   let BlogsData = [
     
@@ -32,16 +33,15 @@ export default function Blog() {
 
   ];
 
-  BlogsData = useFirebaseSection("Blog").items;
-  console.log("Raw blogs data from Firebase:", BlogsData);
+  BlogsData = useFirebaseSection("Blog", initialBlogs).items;
 
   const [search, setSearch] = useState("");
   const [sort, setSort] = useState("newest");
 
   const filteredBlogs = [...BlogsData]
     .filter(b =>
-      b.title.toLowerCase().includes(search.toLowerCase()) ||
-      b.description.toLowerCase().includes(search.toLowerCase())
+      String(b.title || "").toLowerCase().includes(search.toLowerCase()) ||
+      String(b.description || "").toLowerCase().includes(search.toLowerCase())
     )
     .sort((a, b) => {
       switch (sort) {
@@ -50,9 +50,9 @@ export default function Blog() {
         case "oldest":
           return new Date(a.date) - new Date(b.date);
         case "az":
-          return a.title.localeCompare(b.title);
+          return String(a.title || "").localeCompare(String(b.title || ""));
         case "za":
-          return b.title.localeCompare(a.title);
+          return String(b.title || "").localeCompare(String(a.title || ""));
         default:
           return 0;
       }
@@ -62,7 +62,7 @@ export default function Blog() {
     <div>
 
       <HeaderHero
-        image={capturingLiteracy}
+        image="/images/capturingLiteracy.png"
         title={"Blog"}
         description={"Explore insights, strategies, and stories about literacy"}
         currentPageName={"Blog"}

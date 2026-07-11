@@ -1,33 +1,25 @@
+"use client";
 
-import './App.css';
 import HeaderHero from './HeaderHero';
-import capturingLiteracy from './capturingLiteracy.png';
 import Image from 'react-bootstrap/Image';
 import Footer from './Footer';
 
 import ServiceCard from "./ServiceCard";
-import { useEffect, useRef } from "react";
-import { useLocation, Link } from "react-router-dom";
+import { useEffect } from "react";
+import Link from "next/link";
 import { useFirebaseSection } from './useFirebaseSection';
+import { servicePath } from "./routes";
 
 
-export default function Home() {
-  const location = useLocation();
-  const isMounted = useRef(false);
-
-  useEffect(() => {
-    if (isMounted.current && location.state?.scrollTo) {
-      const el = document.getElementById(location.state.scrollTo);
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth" });
-      }
-    }
-    isMounted.current = true;
-  }, [location]);
-
+export default function Home({ initialServices = [] }) {
   useEffect(() => {
     const revealElements = document.querySelectorAll('.reveal-on-scroll');
     if (!revealElements.length) return;
+
+    if (!window.IntersectionObserver) {
+      revealElements.forEach((el) => el.classList.add('is-visible'));
+      return;
+    }
 
     const revealTarget = (entry, obs) => {
       if (entry.isIntersecting || entry.intersectionRatio > 0) {
@@ -51,18 +43,14 @@ export default function Home() {
       observer.observe(el);
     });
 
-    if (!window.IntersectionObserver) {
-      revealElements.forEach((el) => el.classList.add('is-visible'));
-    }
-
     return () => observer.disconnect();
   }, []);
 
-  const servicesData = useFirebaseSection("Services").items || [];
+  const servicesData = useFirebaseSection("Services", initialServices).items || [];
 
   return (
     <div>
-      <HeaderHero image={capturingLiteracy} title={"Katie Lynch"} description={"Certified Academic Language Therapist | IEW Instructor | Dyslexia Specialist"} currentPageName={"Home"}  />
+      <HeaderHero image="/images/capturingLiteracy.png" title={"Katie Lynch"} description={"Certified Academic Language Therapist | IEW Instructor | Dyslexia Specialist"} currentPageName={"Home"}  />
       <section id="bio" className="bio-section reveal-on-scroll">
             <h2>About Katie Lynch</h2>
             <div className="bio-content">
@@ -103,12 +91,12 @@ export default function Home() {
             </section>
 
             
-            <section className="services-preview quote-section" style={{
+            <section className="services-preview quote-section reveal-on-scroll" style={{
           borderLeft: "0px",
           backgroundImage:
             'url("/images/HBG.webp")'
         }}>
-                <h2>Services</h2>
+                <h2> Services</h2>
                 <p>
                   As a Certified Academic Language Therapist with a deep understanding of various learning styles, 
                   I employ a <span className="highlight">compassionate</span> and <span className="highlight">tailored</span> approach to meet children where they are academically. 
@@ -121,8 +109,8 @@ export default function Home() {
                 .map((service, index) => (
                   <Link
                     key={index}
-                    to={`/services`}
-                    style={{ textDecoration: "none" }}
+                    href={servicePath(service)}
+                    className="service-card-link"
                   >
                     <ServiceCard
                       title={service.title}

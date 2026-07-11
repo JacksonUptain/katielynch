@@ -1,13 +1,24 @@
+"use client";
+
 import React, { useState } from "react";
 import { Container, Row, Col, Offcanvas, Nav } from "react-bootstrap";
 import {  List } from "react-bootstrap-icons"; // hamburger icon
 
-import { Link } from 'react-router-dom';
+import Link from "next/link";
 
 const HeaderHero = ({ image, title, description, currentPageName }) => {
   const [show, setShow] = useState(false);
 
-  const handleClose = () => setShow(false);
+  const restorePageScroll = () => {
+    document.body.style.overflow = "";
+    document.body.style.touchAction = "";
+    document.documentElement.style.overflow = "";
+  };
+
+  const handleClose = () => {
+    setShow(false);
+    restorePageScroll();
+  };
   const handleShow = () => setShow(true);
 
   return (
@@ -16,8 +27,6 @@ const HeaderHero = ({ image, title, description, currentPageName }) => {
       {currentPageName !== "Home" && (
         <>
 
-      <head><title>{currentPageName}</title></head>
-
       <div className="header-hero">
         
         <Container fluid className="p-0">
@@ -25,7 +34,9 @@ const HeaderHero = ({ image, title, description, currentPageName }) => {
 
             {/* LEFT IMAGE */}
             <Col md={3} className="image-col">
-              <img src={image} alt={title} className="hero-image" onClick={() => window.location.href = '/'} />
+              <Link href="/" aria-label="Go to home page">
+                <img src={image} alt={title} className="hero-image" />
+              </Link>
             </Col>
 
             {/* CENTER TEXT */}
@@ -52,7 +63,6 @@ const HeaderHero = ({ image, title, description, currentPageName }) => {
 
           {currentPageName === "Home" && (
             <>
-            <head><title>Katie Lynch | Capturing Literacy </title></head>
   <div className="header-hero-home p-0 d-flex justify-content-center align-items-center text-center">
     <Container fluid className="p-0 margin-top">
       <Row className="g-0 h-100">
@@ -71,7 +81,7 @@ const HeaderHero = ({ image, title, description, currentPageName }) => {
             <h1 className="home-hero-title">
               Transforming students
               <br />
-              into <span style={{ color: "#188ee2" }}>capable</span> and <span style={{ color: "#188ee2" }}>confident</span>
+              into <span className="home-hero-emphasis">capable</span> and <span className="home-hero-emphasis">confident</span>
               <br />
               readers and writers
             </h1>
@@ -90,7 +100,16 @@ const HeaderHero = ({ image, title, description, currentPageName }) => {
         
 
       {/* OFFCANVAS MENU */}
-     <Offcanvas show={show} onHide={handleClose} placement="end" id="offcanvasMenu">
+     <Offcanvas
+      show={show}
+      onHide={handleClose}
+      onExited={restorePageScroll}
+      placement="end"
+      id="offcanvasMenu"
+      backdrop={true}
+      scroll={false}
+      enforceFocus
+    >
   <Offcanvas.Header closeButton>
     <Offcanvas.Title>
       <div className="d-flex flex-column align-items-center text-center">
@@ -102,12 +121,12 @@ const HeaderHero = ({ image, title, description, currentPageName }) => {
 
         <Offcanvas.Body>
           <Nav className="flex-column" >
-            <Link className="offcanvas-menu-link" to="/" onClick={handleClose}>Home</Link>
-            <Link className="offcanvas-menu-link" to="/" state={{ scrollTo: "bio" }} onClick={handleClose}>About</Link>
-            <Link className="offcanvas-menu-link" to="/services" onClick={handleClose}>Services</Link>
-            <Link className="offcanvas-menu-link" to="/blog" onClick={handleClose}>Blog</Link>
-            <Link className="offcanvas-menu-link" to="/essay" onClick={handleClose}>Essay of the Month</Link>
-            <Link className="offcanvas-menu-link" to="/contact" onClick={handleClose}>Contact</Link>
+            <Link className="offcanvas-menu-link" href="/" onClick={handleClose}>Home</Link>
+            <Link className="offcanvas-menu-link" href="/about" onClick={handleClose}>About</Link>
+            <Link className="offcanvas-menu-link" href="/services" onClick={handleClose}>Services</Link>
+            <Link className="offcanvas-menu-link" href="/blog" onClick={handleClose}>Blog</Link>
+            <Link className="offcanvas-menu-link" href="/essay" onClick={handleClose}>Essay of the Month</Link>
+            <Link className="offcanvas-menu-link" href="/contact" onClick={handleClose}>Contact</Link>
           </Nav>
         </Offcanvas.Body>
       </Offcanvas>

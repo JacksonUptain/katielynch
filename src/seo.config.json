@@ -1,0 +1,55 @@
+{
+  "siteName": "Katie Lynch | Capturing Literacy",
+  "siteUrl": "https://www.capturingliteracy.com",
+  "defaultTitle": "Katie Lynch | Capturing Literacy",
+  "titleTemplate": "%s | Capturing Literacy",
+  "defaultDescription": "Katie Lynch is a Certified Academic Language Therapist, IEW instructor, and dyslexia specialist helping students become capable, confident readers and writers.",
+  "defaultImage": "/images/capturingLiteracy.png",
+  "locale": "en_US",
+  "pages": {
+    "home": {
+      "title": "Katie Lynch | Capturing Literacy",
+      "description": "Structured literacy, dyslexia support, and writing instruction for students who need explicit, compassionate, individualized teaching.",
+      "path": "/"
+    },
+    "about": {
+      "title": "About Katie Lynch",
+      "description": "Learn about Katie Lynch, a Certified Academic Language Therapist and experienced IEW instructor specializing in reading, spelling, and writing instruction.",
+      "path": "/about"
+    },
+    "services": {
+      "title": "Services",
+      "description": "Explore reading, spelling, writing, and structured literacy services provided by Katie Lynch.",
+      "path": "/services"
+    },
+    "serviceDetail": {
+      "title": "Service Details",
+      "description": "Learn more about this Capturing Literacy service from Katie Lynch.",
+      "path": "/services"
+    },
+    "blog": {
+      "title": "Blog",
+      "description": "Read literacy insights, strategies, and stories from Katie Lynch and Capturing Literacy.",
+      "path": "/blog"
+    },
+    "essay": {
+      "title": "Essay of the Month",
+      "description": "Read featured student essays and recent essay highlights from Capturing Literacy.",
+      "path": "/essay"
+    },
+    "contact": {
+      "title": "Contact Katie Lynch",
+      "description": "Contact Katie Lynch to discuss reading, spelling, writing, dyslexia support, or academic language therapy services.",
+      "path": "/contact"
+    },
+    "notFound": {
+      "title": "Page Not Found",
+      "description": "The page you requested could not be found.",
+      "path": "/404",
+      "robots": {
+        "index": false,
+        "follow": false
+      }
+    }
+  }
+}

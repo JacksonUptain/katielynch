@@ -1,8 +1,9 @@
-import { useNavigate } from "react-router-dom";
-import "./ServiceCard.css";
+"use client";
+
+import { useRouter } from "next/navigation";
 
 export default function ServiceCard({ title, description, image, link, reverse, className = '', style = {} }) {
-  const navigate = useNavigate();
+  const router = useRouter();
 
   return (
     <div
@@ -10,12 +11,12 @@ export default function ServiceCard({ title, description, image, link, reverse, 
       style={style}
       onClick={() => {
         if (link) {
-          navigate(link);
+          router.push(link);
         }
       }}
     >
       <div className="service-image">
-        {image && <img src={image} alt={title} style={{outline: '1px solid black', outlineOffset: '-5px'}}/>}
+        {image && <img src={image} alt={title} />}
       </div>
 
       <div className="service-content">

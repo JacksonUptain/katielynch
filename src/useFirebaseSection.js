@@ -1,16 +1,20 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import { getDatabase, ref, onValue } from "firebase/database";
-import "./firebase"; // Ensure this initializes Firebase
-const db = getDatabase();
+import { app } from "./firebase";
 
-export function useFirebaseSection(sectionName) {
-  const [items, setItems] = useState([]);
-  const [loading, setLoading] = useState(true);
+const db = getDatabase(app);
+
+export function useFirebaseSection(sectionName, initialItems = []) {
+  const [items, setItems] = useState(() => initialItems || []);
+  const [loading, setLoading] = useState(() => !(initialItems || []).length);
 
   useEffect(() => {
     if (!sectionName) return;
 
     const sectionRef = ref(db, `Pages/${sectionName}`);
+    setLoading((initialItems || []).length === 0);
 
     const unsubscribe = onValue(sectionRef, (snapshot) => {
       const data = snapshot.val();

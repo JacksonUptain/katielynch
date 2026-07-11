@@ -1,16 +1,16 @@
+"use client";
+
 import { useState } from 'react';
-import './App.css';
 import HeaderHero from './HeaderHero';
-import capturingLiteracy from './capturingLiteracy.png';
 import Footer from './Footer';
 import { useFirebaseSection } from './useFirebaseSection';
 
 
 
-export default function Essay() {
+export default function Essay({ initialEssays = [] }) {
   
 
-const essaysData = useFirebaseSection("Essays").items || [];
+const essaysData = useFirebaseSection("Essays", initialEssays).items || [];
 
 const featuredEssay = essaysData.find(e => e.featured) || {
   title: "Loading",
@@ -21,7 +21,6 @@ const featuredEssay = essaysData.find(e => e.featured) || {
 };
 
 const otherEssays = essaysData.filter(e => !e.featured);
-console.log("Featured essay:", otherEssays);
 
   
 
@@ -36,8 +35,8 @@ console.log("Featured essay:", otherEssays);
 
   const filteredEssays = [...otherEssays]
   .filter(e =>
-    e.title.toLowerCase().includes(search.toLowerCase()) ||
-    e.description.toLowerCase().includes(search.toLowerCase())
+    String(e.title || "").toLowerCase().includes(search.toLowerCase()) ||
+    String(e.description || "").toLowerCase().includes(search.toLowerCase())
   )
   .sort((a, b) => {
     switch (sort) {
@@ -46,9 +45,9 @@ console.log("Featured essay:", otherEssays);
       case "oldest":
         return new Date(a.date) - new Date(b.date);
       case "az":
-        return a.title.localeCompare(b.title);
+        return String(a.title || "").localeCompare(String(b.title || ""));
       case "za":
-        return b.title.localeCompare(a.title);
+        return String(b.title || "").localeCompare(String(a.title || ""));
       default:
         return 0;
     }
@@ -58,7 +57,7 @@ console.log("Featured essay:", otherEssays);
     <div>
 
       <HeaderHero
-        image={capturingLiteracy}
+        image="/images/capturingLiteracy.png"
         title={"Essay of the Month"}
         description={"Read the latest essay written by my students"}
         currentPageName={"Essay of the Month"}
@@ -67,7 +66,6 @@ console.log("Featured essay:", otherEssays);
       
       <section className="essay-hero">
         <div className="essay-preview">
-          {console.log("Featured essay:", essaysData)}
           <a
             href={featuredEssay.file}
             target="_blank"

@@ -1,20 +1,20 @@
-import './App.css';
+"use client";
+
 import HeaderHero from './HeaderHero';
-import capturingLiteracy from './capturingLiteracy.png';
 import ServiceCard from "./ServiceCard";
 import Footer from './Footer';
 import { useFirebaseSection } from './useFirebaseSection';
-import { Link } from "react-router-dom";
-import "./service.css"
+import Link from "next/link";
+import { servicePath } from "./routes";
 
-export default function Services() {
-  const servicesData = useFirebaseSection("Services").items || [];
+export default function Services({ initialServices = [] }) {
+  const servicesData = useFirebaseSection("Services", initialServices).items || [];
 
   return (
     <div>
       
       <HeaderHero
-        image={capturingLiteracy}
+        image="/images/capturingLiteracy.png"
         title={"Services"}
         description={"provided by Katie Lynch"}
         currentPageName={"Services"}
@@ -30,14 +30,11 @@ export default function Services() {
         {servicesData.map((service, index) => (
           <div
             key={index}
-            style={{
-              borderBottom: "1px solid black",
-              marginBottom: "1rem",
-            }}
+            className="service-list-item"
           >
             <Link
-              to={`/services/${encodeURIComponent(service.title)}`}
-              style={{ textDecoration: "none" }}
+              href={servicePath(service)}
+              className="service-card-link"
             >
               <ServiceCard
                 title={service.title}
