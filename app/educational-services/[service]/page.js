@@ -52,7 +52,7 @@ export async function generateMetadata({ params }) {
   });
 }
 
-export default async function ServicePage({ params }) {
+export default async function EducationalServicePage({ params }) {
   const { service } = await params;
   const result = await getFirebaseSectionResult("Services");
   const currentService = findServiceByRouteParam(result.items, service);

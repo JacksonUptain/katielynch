@@ -6,7 +6,7 @@ import { webPageStructuredData } from "../../src/structuredData";
 
 export const metadata = buildMetadata("blog");
 
-export default async function BlogPage() {
+export default async function ResourcesPage() {
   const blogs = await getFirebaseSection("Blog");
 
   return (

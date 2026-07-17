@@ -9,7 +9,7 @@ import {
 
 export const metadata = buildMetadata("services");
 
-export default async function ServicesPage() {
+export default async function EducationalServicesPage() {
   const services = await getFirebaseSection("Services");
 
   return (

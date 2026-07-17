@@ -1,46 +1,95 @@
 {
   "siteName": "Katie Lynch | Capturing Literacy",
   "siteUrl": "https://capturingliteracy.com",
-  "defaultTitle": "Katie Lynch | Capturing Literacy",
-  "titleTemplate": "%s | Capturing Literacy",
-  "defaultDescription": "Katie Lynch is a Certified Academic Language Therapist, IEW instructor, and dyslexia specialist helping students become capable, confident readers and writers.",
+  "defaultTitle": "Katie Lynch | Dyslexia Tutor in Manassas, VA",
+  "titleTemplate": "%s | Katie Lynch, Manassas VA Tutor",
+  "defaultDescription": "Katie Lynch is a Certified Academic Language Therapist, IEW instructor, and dyslexia tutor in Manassas, Virginia helping students become capable, confident readers and writers.",
   "defaultImage": "/images/capturingLiteracy.png",
   "locale": "en_US",
+  "business": {
+    "displayName": "Katie Lynch | Capturing Literacy",
+    "legalName": "Capturing Literacy LLC",
+    "alternateNames": [
+      "Katie Lynch Tutor",
+      "Capturing Literacy",
+      "Katie Lynch Capturing Literacy"
+    ],
+    "founderName": "Katie Lynch",
+    "jobTitle": "Certified Academic Language Therapist and IEW Instructor",
+    "personDescription": "Katie Lynch is a Manassas, Virginia based Certified Academic Language Therapist, dyslexia tutor, dysgraphia specialist, and IEW writing instructor.",
+    "personImage": "https://lh3.googleusercontent.com/a-/ALV-UjUgoM4CLOYApN3oXhKtgtbruhtm5ymFxY6IEO-uoyZToLRE8B4=s330-p-k-rw-no",
+    "email": "KatieLynchTutor@gmail.com",
+    "telephone": "+18084897886",
+    "locationName": "Manassas, Virginia",
+    "location": {
+      "locality": "Manassas",
+      "region": "VA",
+      "regionName": "Virginia",
+      "country": "US"
+    },
+    "areaServed": [
+      "Manassas, Virginia",
+      "Prince William County, Virginia",
+      "Northern Virginia",
+      "Online tutoring in the United States"
+    ],
+    "knowsAbout": [
+      "Dyslexia tutoring",
+      "Dysgraphia support",
+      "Structured literacy",
+      "Reading intervention",
+      "Spelling instruction",
+      "IEW writing instruction",
+      "Grammar instruction",
+      "Academic language therapy"
+    ],
+    "serviceTypes": [
+      "Dyslexia tutoring",
+      "Dysgraphia support",
+      "Structured literacy tutoring",
+      "Reading and spelling instruction",
+      "IEW writing instruction",
+      "Grammar instruction"
+    ],
+    "sameAs": [
+      "https://iew.com/services/instructors/katie-lynch-203114"
+    ]
+  },
   "pages": {
     "home": {
-      "title": "Katie Lynch | Capturing Literacy",
-      "description": "Structured literacy, dyslexia support, and writing instruction for students who need explicit, compassionate, individualized teaching.",
+      "title": "Katie Lynch - Dyslexia Tutor in Manassas, VA",
+      "description": "Katie Lynch provides structured literacy, dyslexia support, and IEW writing instruction for students in Manassas, Virginia, Northern Virginia, and online.",
       "path": "/"
     },
     "about": {
-      "title": "About Katie Lynch",
-      "description": "Learn about Katie Lynch, a Certified Academic Language Therapist and experienced IEW instructor specializing in reading, spelling, and writing instruction.",
-      "path": "/about"
+      "title": "About Katie Lynch, Manassas VA Literacy Tutor",
+      "description": "Learn about Katie Lynch, a Manassas, Virginia Certified Academic Language Therapist and IEW instructor specializing in reading, spelling, dyslexia, and writing instruction.",
+      "path": "/about-katie-lynch"
     },
     "services": {
-      "title": "Services",
-      "description": "Explore reading, spelling, writing, and structured literacy services provided by Katie Lynch.",
-      "path": "/services"
+      "title": "Dyslexia Tutoring & Writing Instruction in Manassas, VA",
+      "description": "Explore educational services from Katie Lynch in Manassas, Virginia, including dyslexia therapy, dysgraphia support, structured literacy, reading, spelling, and IEW writing instruction.",
+      "path": "/educational-services"
     },
     "serviceDetail": {
-      "title": "Service Details",
-      "description": "Learn more about this Capturing Literacy service from Katie Lynch.",
-      "path": "/services"
+      "title": "Educational Service Details in Manassas, VA",
+      "description": "Learn more about this Capturing Literacy educational service from Katie Lynch, a Manassas, Virginia literacy tutor and Certified Academic Language Therapist.",
+      "path": "/educational-services"
     },
     "blog": {
-      "title": "Blog",
-      "description": "Read literacy insights, strategies, and stories from Katie Lynch and Capturing Literacy.",
-      "path": "/blog"
+      "title": "Literacy Resources for Parents & Students",
+      "description": "Read literacy resources, dyslexia strategies, writing tips, and parent guidance from Katie Lynch and Capturing Literacy in Manassas, Virginia.",
+      "path": "/resources"
     },
     "essay": {
-      "title": "Essay of the Month",
-      "description": "Read featured student essays and recent essay highlights from Capturing Literacy.",
-      "path": "/essay"
+      "title": "Student Writing Showcase",
+      "description": "Read featured student writing and recent student highlights from Capturing Literacy, Katie Lynch's Manassas, Virginia literacy tutoring practice.",
+      "path": "/student-showcase"
     },
     "contact": {
-      "title": "Contact Katie Lynch",
-      "description": "Contact Katie Lynch to discuss reading, spelling, writing, dyslexia support, or academic language therapy services.",
-      "path": "/contact"
+      "title": "Contact Katie Lynch - Tutor in Manassas, VA",
+      "description": "Contact Katie Lynch in Manassas, Virginia to discuss reading, spelling, writing, dyslexia support, dysgraphia support, or academic language therapy.",
+      "path": "/contact-katie-lynch"
     },
     "notFound": {
       "title": "Page Not Found",

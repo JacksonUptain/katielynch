@@ -5,7 +5,7 @@ import { webPageStructuredData } from "../../src/structuredData";
 
 export const metadata = buildMetadata("contact");
 
-export default function ContactPage() {
+export default function ContactKatieLynchPage() {
   return (
     <>
       <JsonLd data={webPageStructuredData("contact")} />

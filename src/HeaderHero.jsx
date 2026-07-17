@@ -5,6 +5,7 @@ import { Container, Row, Col, Offcanvas, Nav } from "react-bootstrap";
 import {  List } from "react-bootstrap-icons"; // hamburger icon
 
 import Link from "next/link";
+import { pagePaths } from "./routes";
 
 const HeaderHero = ({ image, title, description, currentPageName }) => {
   const [show, setShow] = useState(false);
@@ -121,12 +122,12 @@ const HeaderHero = ({ image, title, description, currentPageName }) => {
 
         <Offcanvas.Body>
           <Nav className="flex-column" >
-            <Link className="offcanvas-menu-link" href="/" onClick={handleClose}>Home</Link>
-            <Link className="offcanvas-menu-link" href="/about" onClick={handleClose}>About</Link>
-            <Link className="offcanvas-menu-link" href="/services" onClick={handleClose}>Services</Link>
-            <Link className="offcanvas-menu-link" href="/blog" onClick={handleClose}>Blog</Link>
-            <Link className="offcanvas-menu-link" href="/essay" onClick={handleClose}>Essay of the Month</Link>
-            <Link className="offcanvas-menu-link" href="/contact" onClick={handleClose}>Contact</Link>
+            <Link className="offcanvas-menu-link" href={pagePaths.home} onClick={handleClose}>Home</Link>
+            <Link className="offcanvas-menu-link" href={pagePaths.about} onClick={handleClose}>About</Link>
+            <Link className="offcanvas-menu-link" href={pagePaths.services} onClick={handleClose}>Educational Services</Link>
+            <Link className="offcanvas-menu-link" href={pagePaths.blog} onClick={handleClose}>Resources</Link>
+            <Link className="offcanvas-menu-link" href={pagePaths.essay} onClick={handleClose}>Student Showcase</Link>
+            <Link className="offcanvas-menu-link" href={pagePaths.contact} onClick={handleClose}>Contact</Link>
           </Nav>
         </Offcanvas.Body>
       </Offcanvas>

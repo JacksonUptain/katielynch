@@ -24,7 +24,7 @@ export default function Blog({ initialBlogs = [] }) {
     
   {
     title: "Loading",
-    description: "Loading blog content...",
+    description: "Loading resource content...",
     date: "2026",
     image: '#empty',
     link: '#empty',
@@ -64,16 +64,16 @@ export default function Blog({ initialBlogs = [] }) {
 
       <HeaderHero
         image={assetPath("/images/capturingLiteracy.png")}
-        title={"Blog"}
+        title={"Resources"}
         description={"Explore insights, strategies, and stories about literacy"}
-        currentPageName={"Blog"}
+        currentPageName={"Resources"}
       />
 
       {/* 🔍 SEARCH + FILTER */}
       <div className="essay-controls">
         <input
           type="text"
-          placeholder="Search blog posts..."
+          placeholder="Search resources..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />

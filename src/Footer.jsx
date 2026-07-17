@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { assetPath } from "./sitePaths";
+import { pagePaths } from "./routes";
 
 
 
@@ -38,17 +39,18 @@ export default function Footer() {
             
             
             <div className="footer-links">
-              <Link href="/about">
+              <Link href={pagePaths.about}>
                 About
               </Link>
-              <Link href="/services">Services</Link>
-              <Link href="/contact">Contact</Link>
-              <Link href="/blog">Blog</Link>
-              <Link href="/essay">Essay of the Month</Link>
+              <Link href={pagePaths.services}>Educational Services</Link>
+              <Link href={pagePaths.contact}>Contact</Link>
+              <Link href={pagePaths.blog}>Resources</Link>
+              <Link href={pagePaths.essay}>Student Showcase</Link>
 
             </div>
           </div>
 
+          <p className="footer-copy">Manassas, Virginia | In-person and virtual literacy tutoring</p>
           <p className="footer-copy">&copy; 2026 Katie Lynch | Capturing Literacy LLC</p>
         </footer>
 

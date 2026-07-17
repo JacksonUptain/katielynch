@@ -21,7 +21,8 @@ export default function ServiceCard({ title, description, image, link, reverse, 
 
       <div className="service-content">
         <h3>{title}</h3>
-        <p>{description}</p>
+        {description && <p>{description}</p>}
+        <span className="service-card-cta">View Details</span>
       </div>
     </div>
   );

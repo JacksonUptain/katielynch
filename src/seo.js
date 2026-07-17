@@ -27,6 +27,8 @@ export function getPageSeo(pageKey) {
 
 export function buildMetadata(pageKey, overrides = {}) {
   const page = getPageSeo(pageKey);
+  const business = seoConfig.business || {};
+  const location = business.location || {};
   const title = String(
     overrides.title || page.title || seoConfig.defaultTitle
   ).trim();
@@ -36,12 +38,21 @@ export function buildMetadata(pageKey, overrides = {}) {
   const path = withBasePath(overrides.path || page.path || "/");
   const image = assetPath(overrides.image || page.image || seoConfig.defaultImage);
   const robots = overrides.robots || page.robots || { index: true, follow: true };
+  const localTags = {
+    "geo.region":
+      location.country && location.region
+        ? `${location.country}-${location.region}`
+        : undefined,
+    "geo.placename": business.locationName,
+  };
 
   return {
     metadataBase: new URL(siteUrl),
     applicationName: seoConfig.siteName,
     title,
     description,
+    creator: business.founderName || seoConfig.siteName,
+    publisher: business.legalName || seoConfig.siteName,
     manifest: withBasePath("/manifest.webmanifest"),
     icons: {
       icon: assetPath("/favicon.ico"),
@@ -71,6 +82,9 @@ export function buildMetadata(pageKey, overrides = {}) {
       images: [image],
     },
     robots,
+    other: Object.fromEntries(
+      Object.entries(localTags).filter(([, value]) => Boolean(value))
+    ),
   };
 }
 

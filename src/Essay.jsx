@@ -59,9 +59,9 @@ const otherEssays = essaysData.filter(e => !e.featured);
 
       <HeaderHero
         image={assetPath("/images/capturingLiteracy.png")}
-        title={"Essay of the Month"}
-        description={"Read the latest essay written by my students"}
-        currentPageName={"Essay of the Month"}
+        title={"Student Showcase"}
+        description={"Explore featured student writing and recent highlights"}
+        currentPageName={"Student Showcase"}
       />
 
       
@@ -78,7 +78,7 @@ const otherEssays = essaysData.filter(e => !e.featured);
             </div>
 
             <div className="preview-overlay">
-              <span>View Essay</span>
+              <span>View Student Work</span>
             </div>
           </a>
         </div>
@@ -93,7 +93,7 @@ const otherEssays = essaysData.filter(e => !e.featured);
       <div className="essay-controls">
         <input
           type="text"
-          placeholder="Search essays..."
+          placeholder="Search student work..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
@@ -128,7 +128,7 @@ const otherEssays = essaysData.filter(e => !e.featured);
               </p>
 
               <div className="essay-hover">
-                View Essay
+                View Student Work
               </div>
             </div>
           </a>

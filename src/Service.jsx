@@ -8,7 +8,7 @@ import HeaderHero from './HeaderHero';
 import Footer from './Footer';
 import { useFirebaseSection } from './useFirebaseSection';
 import { parseCourseMarkup } from './courseMarkup';
-import { findServiceByRouteParam } from "./routes";
+import { findServiceByRouteParam, pagePaths } from "./routes";
 import { assetPath } from "./sitePaths";
 function FolderIcon() {
   return (
@@ -309,11 +309,11 @@ export default function Service({ routeService, initialServices = [], initialSer
       <div style={{ padding: "2rem" }}>
         <HeaderHero
           image={assetPath("/images/capturingLiteracy.png")}
-          title={"Loading service"}
-          description={"Loading the requested service details."}
-          currentPageName={"Loading service"}
+          title={"Loading educational service"}
+          description={"Loading the requested educational service details."}
+          currentPageName={"Loading educational service"}
         />
-        <p style={{ margin: "50px" }}>Loading service details...</p>
+        <p style={{ margin: "50px" }}>Loading educational service details...</p>
         <Footer />
       </div>
     );
@@ -325,18 +325,18 @@ export default function Service({ routeService, initialServices = [], initialSer
         
         <HeaderHero
           image={assetPath("/images/capturingLiteracy.png")}
-          title={"Service not found"}
-          description={"The requested service was not found."}
-          currentPageName={"Service not found"}
+          title={"Educational service not found"}
+          description={"The requested educational service was not found."}
+          currentPageName={"Educational service not found"}
         />
         <div className="service-page-toolbar">
-          <Link className="service-return-button" href="/services">
+          <Link className="service-return-button" href={pagePaths.services}>
             <ArrowLeft className="service-return-icon" aria-hidden="true" />
-            Return to services
+            Return to educational services
           </Link>
         </div>
         
-        <p style={{margin: "50px"}}>Service "{service}" not found.</p>
+        <p style={{margin: "50px"}}>Educational service "{service}" not found.</p>
         <Footer />
       </div>
     );
@@ -352,9 +352,9 @@ export default function Service({ routeService, initialServices = [], initialSer
 
         
         <div className="service-page-toolbar">
-          <Link className="service-return-button" href="/services">
+          <Link className="service-return-button" href={pagePaths.services}>
             <ArrowLeft className="service-return-icon" aria-hidden="true" />
-            Return to services
+            Return to educational services
           </Link>
         </div>
         

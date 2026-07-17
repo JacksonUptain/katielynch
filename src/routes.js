@@ -8,13 +8,31 @@ export function slugify(value = "") {
     .replace(/^-+|-+$/g, "");
 }
 
+export const pagePaths = {
+  home: "/",
+  about: "/about-katie-lynch",
+  services: "/educational-services",
+  blog: "/resources",
+  essay: "/student-showcase",
+  contact: "/contact-katie-lynch",
+};
+
+export const legacyPagePaths = {
+  home: "/",
+  about: "/about",
+  services: "/services",
+  blog: "/blog",
+  essay: "/essay",
+  contact: "/contact",
+};
+
 export function serviceSlug(service = {}) {
   return slugify(service.slug || service.title || service.id || "");
 }
 
 export function servicePath(service = {}) {
   const slug = serviceSlug(service);
-  return slug ? `/services/${encodeURIComponent(slug)}` : "/services";
+  return slug ? `${pagePaths.services}/${encodeURIComponent(slug)}` : pagePaths.services;
 }
 
 export function findServiceByRouteParam(services = [], routeParam = "") {
