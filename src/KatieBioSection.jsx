@@ -31,7 +31,7 @@ export default function KatieBioSection({ className = "" }) {
             <h2>About Katie Lynch</h2>
             <div className="katie-intro-text">
               <p>
-                I am Katie Lynch, a Manassas, Virginia based{" "}
+                I am Katie Lynch, a{" "}
                 <span className="highlight">Certified Academic Language Therapist</span> (CALT)
                 and accredited Experienced Instructor with the Institute for Excellence in Writing
                 (IEW). With a Master's in Applied Counseling Psychology and specialized training in{" "}
@@ -120,7 +120,7 @@ export default function KatieBioSection({ className = "" }) {
       </section>
 
       <section className={`${sectionClassName} katie-credentials-section`}>
-        <h2>Education &amp; Professional Certifications</h2>
+        <h2>Education &amp; Professional Certifications:</h2>
         <ul>
           <li>East Carolina University, BA in Psychology and Child Development and Family Relations</li>
           <li>University of Baltimore, MS in Counseling Psychology</li>
