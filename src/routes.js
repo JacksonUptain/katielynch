@@ -10,7 +10,7 @@ export function slugify(value = "") {
 
 export const pagePaths = {
   home: "/",
-  about: "/about-katie-lynch",
+  about: "/about",
   services: "/educational-services",
   blog: "/resources",
   essay: "/student-showcase",

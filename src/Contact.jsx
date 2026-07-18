@@ -21,7 +21,7 @@ export default function Contact() {
         <p><strong>Email:</strong> <a href="mailto:KatieLynchTutor@gmail.com">KatieLynchTutor@gmail.com</a></p>
         <p><strong>Phone:</strong> <a href="tel:+18084897886">(808) 489-7886</a></p>
         <p><strong>Location:</strong> Manassas, Virginia, USA</p>
-        <p><strong>Serving:</strong> Manassas, Prince William County, Northern Virginia, and online students</p>
+        <p><strong>Serving:</strong> Manassas, Prince William County, Northern Virginia, and students in virtual classes online</p>
 
         <p>
           I typically respond within 24-48 hours on weekdays. I look forward to connecting with you and helping your student achieve their academic goals!

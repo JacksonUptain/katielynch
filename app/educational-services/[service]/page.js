@@ -46,7 +46,7 @@ export async function generateMetadata({ params }) {
 
   return buildMetadata("serviceDetail", {
     title: currentService.title,
-    description: `${description} Katie Lynch serves Manassas, Northern Virginia, and online students.`,
+    description: `${description} Katie Lynch offers in-person support in Manassas and Northern Virginia plus virtual classes for online students.`,
     path: servicePath(currentService),
     image: currentService.image || undefined,
   });

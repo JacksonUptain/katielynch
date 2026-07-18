@@ -152,7 +152,7 @@ export function servicesItemListStructuredData(services = []) {
     "@context": "https://schema.org",
     "@type": "ItemList",
     "@id": `${absoluteUrl(pagePaths.services)}#services`,
-    name: "Educational services in Manassas, Virginia",
+    name: "Educational services, tutoring, and virtual classes from Katie Lynch",
     description: getPageSeo("services").description,
     itemListElement: services.map((service, index) => ({
       "@type": "ListItem",

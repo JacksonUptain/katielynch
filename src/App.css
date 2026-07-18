@@ -6,7 +6,12 @@
   --brand-body: #333333;
   --brand-muted: #60738e;
   --brand-cream: #fdfaf2;
+  --brand-paper: #fffdf8;
+  --brand-panel: #fffaf0;
   --brand-soft-blue: #f7fbff;
+  --brand-line: rgba(29, 60, 108, 0.12);
+  --brand-shadow: rgba(29, 60, 108, 0.08);
+  --brand-accent-soft: rgba(0, 119, 204, 0.08);
   --brand-serif: 'Georgia', serif;
   --brand-ui: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
@@ -69,8 +74,41 @@ a {
   }
 }
 
+@keyframes transformingWordMetamorph {
+  from {
+    background-position: 0% 50%;
+  }
+
+  to {
+    background-position: 100% 50%;
+  }
+}
+
 .home-hero-title {
   animation: heroTitleFadeIn 0.8s ease-out 0.2s backwards;
+}
+
+.home-transforming-word {
+  display: inline-block;
+  color: transparent;
+  background:
+    linear-gradient(
+      100deg,
+      #111111 0%,
+      #111111 33%,
+      var(--brand-accent) 41%,
+      #9b7041 50%,
+      var(--brand-heading) 58%,
+      #333333 67%,
+      #333333 100%
+    );
+  background-size: 300% 100%;
+  background-position: 0% 50%;
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  transform-origin: 50% 70%;
+  animation: transformingWordMetamorph 2.65s linear 0.88s both;
 }
 
 
@@ -312,13 +350,15 @@ section {
 
 /* Quote Section */
 .quote-section {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
     border-bottom-left-radius: 0px;
     border-top-left-radius: 0px;
     margin-top: 1rem;
-    background: linear-gradient(rgba(255,255,255,0.8), rgba(255, 255, 255, 0.8)), url("./preview.png");
-  
-    background-repeat: no-repeat;
-    background-position: 110% 20%;
+    background:
+      linear-gradient(90deg, rgba(255, 253, 248, 0.97), rgba(253, 250, 242, 0.88)),
+      var(--brand-paper);
     border-left: 6px solid var(--brand-accent);
     
     padding: 2rem 2rem 2rem 2.5rem;
@@ -326,6 +366,26 @@ section {
     font-size: 1.16rem;
     line-height: 1.72;
     font-family: var(--brand-serif);
+}
+
+.quote-section::before {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    top: 50%;
+    right: clamp(-17rem, -18vw, -7rem);
+    width: clamp(31rem, 62vw, 52rem);
+    aspect-ratio: 1;
+    background: url("./preview.png") center / contain no-repeat;
+    opacity: 0.16;
+    transform: translateY(-50%) rotate(-9deg);
+    transform-origin: center;
+    pointer-events: none;
+}
+
+.quote-section > * {
+    position: relative;
+    z-index: 1;
 }
 
 .quote-section h2 {
@@ -716,6 +776,8 @@ section {
 }
 
 .educational-services-section {
+  position: relative;
+  isolation: isolate;
   margin-top: 1rem;
   margin-bottom: 2rem;
   display: grid;
@@ -723,15 +785,39 @@ section {
   padding: 0;
   overflow: hidden;
   color: var(--brand-heading);
-  background: var(--brand-soft-blue);
+  background:
+    linear-gradient(90deg, rgba(255, 253, 248, 0.92), rgba(253, 250, 242, 0.8)),
+    var(--brand-panel);
   border-left: 6px solid var(--brand-accent);
   border-bottom-left-radius: 12px;
   font-family: var(--brand-serif);
 }
 
+.educational-services-section::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  top: 50%;
+  right: clamp(-18rem, -20vw, -7rem);
+  width: clamp(34rem, 58vw, 54rem);
+  aspect-ratio: 1;
+  background: url("./images/BgTexture.webp") center / cover no-repeat;
+  opacity: 0.62;
+  mix-blend-mode: multiply;
+  transform: translateY(-48%) rotate(10deg) scale(1.1);
+  transform-origin: center;
+  pointer-events: none;
+}
+
+.educational-services-photo,
+.educational-services-copy {
+  position: relative;
+  z-index: 1;
+}
+
 .educational-services-photo {
   min-height: 390px;
-  background: #eef0f6;
+  background: #f4efe2;
 }
 
 .educational-services-photo img {
@@ -903,7 +989,7 @@ section {
 @media (max-width: 600px) {
   .services-preview, .quote-section {
     background-image: none;
-    background-color: white;
+    background-color: var(--brand-paper);
   }
   
   .footer-award {
@@ -1460,11 +1546,11 @@ section {
 .katie-section {
   margin: 1rem auto 2rem;
   padding: 2rem 2rem 2rem 2.5rem;
-  background: #ffffff;
+  background: linear-gradient(180deg, var(--brand-paper), var(--brand-panel));
   border-left: 6px solid var(--brand-accent);
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 8px 14px var(--brand-shadow);
   font-family: var(--brand-serif);
   text-align: left;
 }
@@ -1472,6 +1558,14 @@ section {
 .katie-intro-section {
   border-top-left-radius: 15px;
   border-bottom-left-radius: 12px;
+}
+
+.katie-section.katie-intro-section > h2 {
+  max-width: none;
+  margin: 0 auto clamp(1.15rem, 3vw, 1.7rem);
+  padding-bottom: 0.3rem;
+  border-bottom: 2px solid var(--brand-accent);
+  text-align: center;
 }
 
 .katie-section h2 {
@@ -1487,34 +1581,38 @@ section {
 }
 
 .katie-section-eyebrow {
-  margin: 0 0 0.45rem;
+  margin: 0 0 0.025rem;
   color: var(--brand-accent);
   font-family: var(--brand-ui);
   font-size: 0.84rem;
   font-weight: 800;
   letter-spacing: 0.08em;
-  line-height: 1.35;
+  line-height: 1;
   text-transform: uppercase;
 }
 
 .katie-intro-layout {
-  display: grid;
-  grid-template-columns: minmax(240px, 360px) minmax(0, 1fr);
-  align-items: center;
-  gap: clamp(2.25rem, 7vw, 5.5rem);
+  display: flow-root;
+  max-width: 1080px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .katie-photo-column {
-  display: flex;
-  justify-content: center;
+  float: left;
+  width: clamp(250px, 31vw, 350px);
+  margin: 0 clamp(1.75rem, 4.5vw, 3.5rem) 1rem 0;
+  shape-outside: circle(50% at 50% 50%);
+  shape-margin: clamp(0.55rem, 1.6vw, 1rem);
 }
 
 .katie-photo-link {
   position: relative;
   display: block;
-  width: min(350px, 100%);
+  width: 100%;
   color: inherit;
   text-decoration: none;
+  transform: translateY(0.25rem);
 }
 
 .katie-photo {
@@ -1553,14 +1651,16 @@ section {
 }
 
 .katie-intro-copy {
-  max-width: 860px;
+  max-width: none;
+  padding-top: clamp(0.15rem, 1vw, 0.7rem);
 }
 
 .katie-intro-text {
-  max-width: 760px;
+  max-width: none;
   color: var(--brand-heading);
   font-size: clamp(1.1rem, 1.8vw, 1.24rem);
   line-height: 1.72;
+  text-wrap: pretty;
 }
 
 .katie-intro-text p {
@@ -1571,17 +1671,50 @@ section {
   margin-top: 1rem;
 }
 
+.katie-lens-section {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  padding-top: clamp(2rem, 5vw, 3rem);
+  padding-bottom: clamp(2rem, 5vw, 3rem);
+  background:
+    linear-gradient(rgba(255, 253, 248, 0.9), rgba(253, 250, 242, 0.9)),
+    var(--brand-panel);
+}
+
+.katie-lens-section::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  top: -9rem;
+  right: clamp(-18rem, -15vw, -6rem);
+  width: clamp(34rem, 56vw, 52rem);
+  aspect-ratio: 1;
+  background: url("./images/BgTexture.webp") center / cover no-repeat;
+  opacity: 0.48;
+  mix-blend-mode: multiply;
+  transform: rotate(-14deg);
+  transform-origin: center;
+  pointer-events: none;
+}
+
 .katie-section-heading {
+  position: relative;
+  z-index: 1;
   max-width: 720px;
-  margin: 0 auto clamp(1.4rem, 4vw, 2.25rem);
+  margin: 0 auto clamp(1.25rem, 3vw, 1.75rem);
   text-align: center;
 }
 
 .katie-lens-list {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(0.9rem, 2.5vw, 1.2rem);
   max-width: 980px;
   margin-right: auto;
   margin-left: auto;
-  border-top: 1px solid rgba(29, 60, 108, 0.14);
 }
 
 .katie-lens-section h2,
@@ -1593,7 +1726,7 @@ section {
   text-align: center;
 }
 
-.katie-section.reveal-on-scroll.katie-lens-section  {
+.katie-section.reveal-on-scroll.katie-lens-section {
   border-top-left-radius: 12px !important;
 }
 
@@ -1602,38 +1735,47 @@ section {
 }
 
 .katie-lens-item {
-  border-bottom: 1px solid rgba(29, 60, 108, 0.14);
+  position: relative;
+  overflow: hidden;
+  min-height: 100%;
+  padding: clamp(1.05rem, 2.4vw, 1.45rem) clamp(1.1rem, 2.8vw, 1.65rem);
+  background:
+    radial-gradient(circle at 94% 8%, rgba(0, 119, 204, 0.12), transparent 30%),
+    linear-gradient(135deg, rgba(255, 253, 248, 0.99), rgba(255, 250, 240, 0.94));
+  border: 1px solid var(--brand-line);
+  border-radius: 8px;
+  box-shadow: 0 10px 18px rgba(29, 60, 108, 0.055);
 }
 
-.katie-lens-trigger {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
-  align-items: center;
-  width: 100%;
-  gap: clamp(1rem, 3vw, 1.75rem);
-  padding: clamp(1.2rem, 3vw, 1.55rem) 0;
-  color: inherit;
-  background: transparent;
-  border: 0;
-  font: inherit;
-  text-align: left;
-  cursor: pointer;
+.katie-lens-item::before {
+  content: "";
+  position: absolute;
+  pointer-events: none;
 }
 
-.katie-lens-number {
-  color: var(--brand-accent);
-  font-family: var(--brand-ui);
-  font-size: 0.85rem;
-  font-weight: 800;
-  line-height: 1;
+.katie-lens-item::before {
+  inset: -18% 55% -24% -20%;
+  background:
+    radial-gradient(ellipse at center, rgba(0, 119, 204, 0.09), transparent 64%),
+    radial-gradient(ellipse at 68% 48%, rgba(155, 112, 65, 0.08), transparent 58%);
+  transform: rotate(-10deg);
 }
 
-.katie-lens-copy {
-  display: grid;
-  gap: 0.28rem;
+.katie-lens-item:nth-child(2) {
+  background:
+    radial-gradient(circle at 8% 10%, rgba(155, 112, 65, 0.12), transparent 31%),
+    linear-gradient(135deg, rgba(255, 253, 248, 0.99), rgba(247, 251, 255, 0.92));
+}
+
+.katie-lens-item:nth-child(2)::before {
+  inset: -20% -20% -18% 55%;
+  transform: rotate(10deg);
 }
 
 .katie-lens-title {
+  position: relative;
+  z-index: 1;
+  margin: 0;
   color: var(--brand-heading);
   font-family: var(--brand-ui);
   font-size: 1.12rem;
@@ -1641,71 +1783,36 @@ section {
   line-height: 1.25;
 }
 
-.katie-lens-summary {
+.katie-lens-copy {
+  position: relative;
+  z-index: 1;
+  margin: 0.62rem 0 0;
   color: var(--brand-body);
-  font-size: 1.08rem;
-  line-height: 1.62;
-}
-
-.katie-lens-symbol {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2rem;
-  height: 2rem;
-  color: var(--brand-accent);
-  border: 1px solid rgba(0, 119, 204, 0.24);
-  border-radius: 50%;
-  font-family: var(--brand-ui);
-  font-size: 1.15rem;
-  font-weight: 700;
-  line-height: 1;
-}
-
-.katie-lens-detail {
-  display: grid;
-  grid-template-rows: 0fr;
-  opacity: 0;
-  transition: grid-template-rows 0.24s ease, opacity 0.24s ease;
-}
-
-.katie-lens-item.is-open .katie-lens-detail {
-  grid-template-rows: 1fr;
-  opacity: 1;
-}
-
-.katie-lens-detail p {
-  overflow: hidden;
-  max-width: 760px;
-  margin: 0;
-  padding: 0 0 1.35rem calc(1.85rem + clamp(1rem, 3vw, 1.75rem));
-  color: var(--brand-body);
-  font-size: 1.08rem;
-  line-height: 1.7;
+  font-size: 0.99rem;
+  line-height: 1.58;
 }
 
 .katie-credentials-section ul {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0 2rem;
+  gap: 0.85rem;
   max-width: 1020px;
   margin: 0 auto;
   padding: 0;
-  border-top: 1px solid rgba(29, 60, 108, 0.14);
   list-style: none;
 }
 
 .katie-credentials-section li {
-  padding: 0.95rem 0;
+  min-height: 100%;
+  padding: 1rem 1.1rem;
   color: var(--brand-body);
+  background: linear-gradient(180deg, var(--brand-paper), var(--brand-panel));
+  border: 1px solid var(--brand-line);
+  border-radius: 8px;
   font-family: var(--brand-ui);
   font-size: 1.03rem;
   line-height: 1.5;
-  border-bottom: 1px solid rgba(29, 60, 108, 0.14);
-}
-
-.katie-credentials-section li::before {
-  display: none;
+  box-shadow: 0 6px 14px var(--brand-shadow);
 }
 
 @media (max-width: 820px) {
@@ -1713,30 +1820,40 @@ section {
     padding: clamp(2rem, 7vw, 3rem) clamp(1rem, 5vw, 1.5rem);
   }
 
-  .katie-intro-layout,
   .katie-credentials-section ul {
+    grid-template-columns: 1fr;
+  }
+
+  .katie-intro-layout {
+    max-width: 760px;
+  }
+
+  .katie-photo-column {
+    float: none;
+    width: min(320px, 100%);
+    margin: 0 auto 1.4rem;
+    shape-outside: none;
+    shape-margin: 0;
+  }
+
+  .katie-photo-link {
+    transform: none;
+  }
+
+  .katie-intro-copy {
+    padding-top: 0;
+  }
+
+  .katie-lens-list {
     grid-template-columns: 1fr;
   }
 
   .katie-photo-link {
     width: min(320px, 100%);
   }
-
-  .katie-lens-trigger {
-    grid-template-columns: minmax(0, 1fr) auto;
-  }
-
-  .katie-lens-number {
-    display: none;
-  }
-
-  .katie-lens-detail p {
-    padding-left: 0;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .katie-lens-detail,
   .katie-photo-overlay {
     transition: none;
   }

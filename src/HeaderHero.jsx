@@ -80,7 +80,7 @@ const HeaderHero = ({ image, title, description, currentPageName }) => {
         >
           <div className="home-hero-textbox ">
             <h1 className="home-hero-title">
-              Transforming students
+              <span className="home-transforming-word">Transforming</span> students
               <br />
               into <span className="home-hero-emphasis">capable</span> and <span className="home-hero-emphasis">confident</span>
               <br />
