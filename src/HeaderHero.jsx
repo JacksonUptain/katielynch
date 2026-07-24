@@ -50,7 +50,17 @@ const HeaderHero = ({ image, title, description, currentPageName }) => {
 
             {/* RIGHT HAMBURGER */}
             <Col md={1} className="menu-col d-flex justify-content-center align-items-center">
-              <List size={40} className="menu-icon" onClick={handleShow} />
+              <button
+                type="button"
+                className="menu-button"
+                onClick={handleShow}
+                aria-label="Open navigation menu"
+                aria-controls="offcanvasMenu"
+                aria-expanded={show}
+                aria-haspopup="dialog"
+              >
+                <List size={38} className="menu-icon" aria-hidden="true" />
+              </button>
             </Col>
 
           </Row>
@@ -91,8 +101,18 @@ const HeaderHero = ({ image, title, description, currentPageName }) => {
       </Row>
 
       {/* HAMBURGER */}
-      <div className="home-hero-hamburger  d-flex justify-content-center align-items-center text-center">
-        <List size={40} className="menu-icon text-dark" onClick={handleShow} />
+      <div className="home-hero-hamburger d-flex justify-content-center align-items-center text-center">
+        <button
+          type="button"
+          className="menu-button home-menu-button"
+          onClick={handleShow}
+          aria-label="Open navigation menu"
+          aria-controls="offcanvasMenu"
+          aria-expanded={show}
+          aria-haspopup="dialog"
+        >
+          <List size={38} className="menu-icon text-dark" aria-hidden="true" />
+        </button>
       </div>
     </Container>
   </div>
