@@ -50,7 +50,6 @@ export default function Home() {
 
       <nav className="mobile-home-jump-nav" aria-label="Home page sections">
         <a href="#bio">About</a>
-        <a href="#approach">Approach</a>
         <a href="#credentials">Credentials</a>
         <a href="#home-services">Services</a>
       </nav>

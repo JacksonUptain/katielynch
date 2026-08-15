@@ -5,9 +5,10 @@
   --brand-heading: #1d3c6c;
   --brand-body: #333333;
   --brand-muted: #60738e;
-  --brand-cream: #fdfaf2;
-  --brand-paper: #fffdf8;
-  --brand-panel: #fffaf0;
+  --brand-logo-bg: #fefbf5;
+  --brand-cream: var(--brand-logo-bg);
+  --brand-paper: var(--brand-logo-bg);
+  --brand-panel: var(--brand-logo-bg);
   --brand-soft-blue: #f7fbff;
   --brand-line: rgba(29, 60, 108, 0.12);
   --brand-shadow: rgba(29, 60, 108, 0.08);
@@ -24,7 +25,7 @@
 
 .App {
   text-align: center;
-  background-color: #fdfaf2;
+  background-color: var(--brand-logo-bg);
 }
 
 .App-logo {
@@ -135,7 +136,7 @@ a {
   position: relative;
   height: auto;
   width: 100%;
-  background-color: #fdfaf2;
+  background-color: var(--brand-logo-bg);
   overflow: hidden;
   border-bottom: 1px solid #e5e5e5;
   z-index: 999;
@@ -391,7 +392,7 @@ section {
     max-width: 90%;
     margin: 3rem auto;
     padding: 2rem 1.5rem;
-    background-color: #fdfaf2; /* matches header warmth */
+    background-color: var(--brand-logo-bg);
     border-radius: 15px;
     
     box-shadow: 0 8px 12px rgba(0, 0, 0, 0.05);
@@ -427,9 +428,7 @@ section {
     border-bottom-left-radius: 0px;
     border-top-left-radius: 0px;
     margin-top: 1rem;
-    background:
-      linear-gradient(90deg, rgba(255, 253, 248, 0.97), rgba(253, 250, 242, 0.88)),
-      var(--brand-paper);
+    background: var(--brand-logo-bg);
     border-left: 6px solid var(--brand-accent);
     
     padding: 2rem 2rem 2rem 2.5rem;
@@ -520,7 +519,7 @@ section {
  .site-footer {
   text-align: center;
   padding: 2rem 1rem;
-  background: #f9f5ee;
+  background: var(--brand-logo-bg);
   color: black;
   margin-top: 2rem;
   border-top: 1px solid #e5e5e5;
@@ -946,9 +945,7 @@ section {
   padding: clamp(1.25rem, 3vw, 1.75rem);
   overflow: hidden;
   color: var(--brand-heading);
-  background:
-    linear-gradient(90deg, rgba(255, 253, 248, 0.92), rgba(253, 250, 242, 0.8)),
-    var(--brand-panel);
+  background: var(--brand-logo-bg);
   border-left: 6px solid var(--brand-accent);
   border-bottom-left-radius: 12px;
   font-family: var(--brand-serif);
@@ -1047,6 +1044,37 @@ section {
 .educational-services-cta:focus-visible {
   outline: 3px solid rgba(0, 119, 204, 0.3);
   outline-offset: 3px;
+}
+
+@media (min-width: 800px) and (max-width: 1199px) {
+  .educational-services-section {
+    grid-template-columns: minmax(190px, 260px) minmax(0, 1fr);
+    gap: clamp(1rem, 2.5vw, 1.75rem);
+    padding: clamp(1rem, 2vw, 1.4rem);
+  }
+
+  .educational-services-photo {
+    max-width: 260px;
+  }
+
+  .educational-services-copy {
+    padding: clamp(1.1rem, 2.4vw, 1.75rem);
+  }
+
+  .educational-services-copy h2 {
+    margin-bottom: 0.75rem;
+    font-size: clamp(1.55rem, 2.4vw, 1.85rem);
+  }
+
+  .educational-services-copy p {
+    font-size: clamp(0.95rem, 1.4vw, 1.04rem);
+    line-height: 1.62;
+  }
+
+  .educational-services-cta {
+    margin-top: 1.2rem;
+    font-size: 0.94rem;
+  }
 }
 
 .services-page-intro {
@@ -1758,13 +1786,53 @@ section {
 }
 
 .katie-intro-section {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: clamp(2.25rem, 4vw, 3.5rem);
+  background: var(--brand-logo-bg);
+  border: 1px solid rgba(29, 60, 108, 0.12);
+  border-left: 6px solid var(--brand-accent);
   border-top-left-radius: 15px;
   border-bottom-left-radius: 12px;
+  box-shadow: 0 22px 55px rgba(29, 60, 108, 0.1);
 }
 
-.katie-section.katie-intro-section > h2 {
+.katie-intro-section::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: -7rem;
+  right: -6rem;
+  width: clamp(24rem, 48vw, 42rem);
+  aspect-ratio: 1;
+  background: url("./images/BgTexture.webp") center / contain no-repeat;
+  opacity: 0.24;
+  transform: rotate(18deg);
+  pointer-events: none;
+}
+
+.katie-intro-heading {
+  display: grid;
+  grid-template-columns: minmax(2rem, 1fr) auto minmax(2rem, 1fr);
+  align-items: center;
+  gap: clamp(0.8rem, 2vw, 1.5rem);
+  max-width: 1240px;
+  margin: 0 auto clamp(2rem, 4vw, 3rem);
+}
+
+.katie-intro-heading span {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 119, 204, 0.55));
+}
+
+.katie-intro-heading span:last-child {
+  background: linear-gradient(90deg, rgba(0, 119, 204, 0.55), transparent);
+}
+
+.katie-section .katie-intro-heading h2 {
   max-width: none;
-  margin: 0 auto clamp(1.15rem, 3vw, 1.7rem);
+  margin: 0;
   padding-bottom: 0;
   text-align: center;
 }
@@ -1780,39 +1848,62 @@ section {
   line-height: 1.2;
 }
 
-.katie-section-eyebrow {
-  margin: 0 0 0.025rem;
-  color: var(--brand-accent);
-  font-family: var(--brand-ui);
-  font-size: 0.84rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  line-height: 1;
-  text-transform: uppercase;
-}
-
 .katie-intro-layout {
-  display: flow-root;
-  max-width: 1080px;
-  margin-right: auto;
-  margin-left: auto;
+  display: grid;
+  grid-template-columns: minmax(250px, 0.72fr) minmax(0, 1.6fr);
+  align-items: start;
+  gap: clamp(2.25rem, 5vw, 4.75rem);
+  max-width: 1240px;
+  margin: 0 auto;
 }
 
 .katie-photo-column {
-  float: left;
-  width: clamp(250px, 31vw, 350px);
-  margin: 0 clamp(1.75rem, 4.5vw, 3.5rem) 1rem 0;
-  shape-outside: circle(50% at 50% 50%);
-  shape-margin: clamp(0.55rem, 1.6vw, 1rem);
+  position: sticky;
+  top: 2rem;
+  width: 100%;
+  max-width: 330px;
+  margin: 1.25rem auto 0;
 }
 
 .katie-photo-link {
   position: relative;
+  isolation: isolate;
   display: block;
   width: 100%;
   color: inherit;
   text-decoration: none;
-  transform: translateY(0.25rem);
+  transform: rotate(-2deg);
+  transition: transform 0.25s ease;
+}
+
+.katie-photo-link::before,
+.katie-photo-link::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.katie-photo-link::before {
+  inset: -12px;
+  border: 2px solid rgba(0, 119, 204, 0.38);
+  border-radius: 46% 54% 49% 51% / 54% 46% 54% 46%;
+  transform: rotate(7deg);
+}
+
+.katie-photo-link::after {
+  right: -1.35rem;
+  bottom: -1.5rem;
+  width: 48%;
+  aspect-ratio: 1;
+  background: rgba(240, 168, 51, 0.2);
+  border-radius: 50%;
+  filter: blur(1px);
+}
+
+.katie-photo-link:hover,
+.katie-photo-link:focus {
+  transform: rotate(0deg) translateY(-3px);
 }
 
 .katie-photo {
@@ -1821,10 +1912,10 @@ section {
   aspect-ratio: 1;
   object-fit: cover;
   object-position: center;
-  border-radius: 50%;
-  border: 0;
-  outline: 2px solid rgba(0, 119, 204, 0.45);
-  box-shadow: 0 18px 42px rgba(29, 60, 108, 0.18);
+  border: 7px solid var(--brand-logo-bg);
+  border-radius: 48% 52% 45% 55% / 52% 46% 54% 48%;
+  outline: 0;
+  box-shadow: 0 22px 48px rgba(29, 60, 108, 0.22);
 }
 
 .katie-photo-overlay {
@@ -1835,7 +1926,8 @@ section {
   justify-content: center;
   color: #ffffff;
   background: rgba(29, 60, 108, 0.68);
-  border-radius: 50%;
+  border: 7px solid transparent;
+  border-radius: 48% 52% 45% 55% / 52% 46% 54% 48%;
   font-family: var(--brand-ui);
   font-size: 0.95rem;
   font-weight: 800;
@@ -1852,23 +1944,61 @@ section {
 
 .katie-intro-copy {
   max-width: none;
-  padding-top: clamp(0.15rem, 1vw, 0.7rem);
+  padding: 0;
 }
 
 .katie-intro-text {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+  gap: clamp(0.85rem, 1.8vw, 1.2rem);
   max-width: none;
   color: var(--brand-heading);
-  font-size: clamp(1.1rem, 1.8vw, 1.24rem);
-  line-height: 1.72;
+  font-size: clamp(0.96rem, 1.2vw, 1.06rem);
+  line-height: 1.62;
   text-wrap: pretty;
 }
 
 .katie-intro-text p {
   margin: 0;
+  padding: clamp(1rem, 2vw, 1.35rem);
+  color: var(--brand-body);
+  background: rgba(254, 251, 245, 0.9);
+  border: 1px solid rgba(29, 60, 108, 0.12);
+  border-top: 4px solid var(--brand-accent);
+  border-radius: 12px;
+  box-shadow: 0 10px 26px rgba(29, 60, 108, 0.07);
 }
 
-.katie-intro-text p + p {
-  margin-top: 1rem;
+.katie-intro-text p:nth-child(2) {
+  border-top-color: #2e9d8f;
+}
+
+.katie-intro-text p:nth-child(3) {
+  border-top-color: #d8932b;
+}
+
+.katie-intro-text p:nth-child(4) {
+  border-top-color: #e06f61;
+}
+
+.katie-intro-text .katie-underline {
+  color: inherit;
+  background: linear-gradient(transparent 74%, rgba(240, 168, 51, 0.3) 74%);
+}
+
+@media (min-width: 800px) and (max-width: 1050px) {
+  .katie-intro-layout {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .katie-photo-column {
+    position: relative;
+    top: auto;
+    width: min(225px, 32vw);
+    margin: 0 auto;
+  }
 }
 
 .katie-credentials-section h2 {
@@ -1882,96 +2012,6 @@ section {
 
 #quote {
   border-bottom-left-radius: 12px !important;
-}
-
-.katie-approach-carousel {
-  width: 100%;
-  max-width: none;
-  margin-top: clamp(1.25rem, 3vw, 1.8rem);
-  padding-top: clamp(0.35rem, 1vw, 0.55rem);
-}
-
-.katie-approach-slide-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  margin-bottom: 0.45rem;
-}
-
-.katie-approach-controls {
-  display: flex;
-  flex: 0 0 auto;
-  gap: 0.4rem;
-}
-
-.katie-approach-control {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 34px;
-  height: 34px;
-  padding: 0;
-  color: var(--brand-heading);
-  background: rgba(255, 255, 255, 0.62);
-  border: 1px solid rgba(29, 60, 108, 0.16);
-  border-radius: 999px;
-  cursor: pointer;
-  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
-}
-
-.katie-approach-control:hover,
-.katie-approach-control:focus {
-  color: #ffffff;
-  background: var(--brand-accent);
-}
-
-.katie-approach-control:focus-visible {
-  outline: 3px solid rgba(0, 119, 204, 0.24);
-  outline-offset: 2px;
-}
-
-.katie-approach-control:active {
-  transform: translateY(1px);
-}
-
-.katie-approach-slide {
-  min-height: 138px;
-}
-
-.katie-approach-slide h3 {
-  margin: 0;
-  color: var(--brand-heading);
-  font-family: var(--brand-ui);
-  font-size: 1rem;
-  font-weight: 800;
-  line-height: 1.25;
-}
-
-.katie-approach-slide p {
-  margin: 0;
-  color: var(--brand-body);
-  font-family: var(--brand-ui);
-  font-size: 0.95rem;
-  line-height: 1.55;
-}
-
-.katie-approach-dots {
-  display: flex;
-  gap: 0.35rem;
-  margin-top: 0.7rem;
-}
-
-.katie-approach-dot {
-  width: 7px;
-  height: 7px;
-  background: rgba(29, 60, 108, 0.22);
-  border-radius: 999px;
-}
-
-.katie-approach-dot.is-active {
-  width: 18px;
-  background: var(--brand-accent);
 }
 
 .katie-credentials-grid {
@@ -2042,37 +2082,44 @@ section {
     gap: 1.5rem;
   }
 
-  .katie-approach-slide {
-    min-height: 0;
-  }
-
   .katie-credential-column + .katie-credential-column {
     padding-top: 0;
     padding-left: 0;
   }
 
   .katie-intro-layout {
+    grid-template-columns: 1fr;
+    gap: 2.25rem;
     max-width: 760px;
   }
 
   .katie-photo-column {
-    float: none;
-    width: min(320px, 100%);
-    margin: 0 auto 1.4rem;
-    shape-outside: none;
-    shape-margin: 0;
+    position: relative;
+    top: auto;
+    width: min(285px, 78vw);
+    margin: 0 auto;
   }
 
   .katie-photo-link {
-    transform: none;
+    transform: rotate(-1.5deg);
   }
 
   .katie-intro-copy {
-    padding-top: 0;
+    padding: 0;
   }
 
   .katie-photo-link {
-    width: min(320px, 100%);
+    width: 100%;
+  }
+
+  .katie-intro-text p {
+    padding: clamp(0.95rem, 3vw, 1.2rem);
+  }
+}
+
+@media (max-width: 599px) {
+  .katie-intro-text {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -2234,6 +2281,7 @@ section {
 .header-hero-home {
   height: 60vh; /* full viewport height */
   position: relative;
+  background: var(--brand-logo-bg);
 }
 
 .object-fit-cover {
@@ -2244,15 +2292,21 @@ section {
 }
 
 .home-hero-textbox {
+  width: 100%;
   max-width: 100%; /* don’t let text overflow */
   padding: 0 !important;
+  text-align: center;
 }
 
 .home-hero-title {
+  width: 100%;
+  max-width: 1200px;
+  margin-right: auto;
+  margin-left: auto;
   font-size: 3.5rem;
   line-height: 1.2;
   padding: 0 !important;
-  text-align: left;
+  text-align: center;
 }
 
 .home-hero-hamburger {
@@ -2278,7 +2332,7 @@ section {
   font-size: 3rem;
   line-height: 1.2;
   padding: 0 !important;
-  text-align: left;
+  text-align: center;
 }
 
  .home-hero-hamburger {
@@ -2366,18 +2420,6 @@ section {
     font-size: 1.45rem;
   }
 
-  .katie-approach-slide-header {
-    align-items: flex-start;
-  }
-
-  .katie-approach-controls {
-    gap: 0.3rem;
-  }
-
-  .katie-approach-control {
-    width: 32px;
-    height: 32px;
-  }
 }
 
 
@@ -3120,13 +3162,10 @@ section {
 
 @media (max-width: 799px) {
   .home-page {
-    background:
-      linear-gradient(180deg, rgba(247, 251, 255, 0.55), rgba(253, 250, 242, 0) 18rem),
-      var(--brand-cream);
+    background: var(--brand-logo-bg);
   }
 
   .home-page #bio,
-  .home-page #approach,
   .home-page #credentials,
   .home-page #home-services,
   .home-page #quote {
@@ -3136,8 +3175,7 @@ section {
   .home-page .header-hero-home {
     min-height: 0;
     padding: clamp(3.55rem, 12vw, 4.25rem) 1rem 1.35rem !important;
-    background:
-      linear-gradient(180deg, #fffdf8 0%, #f7fbff 100%);
+    background: var(--brand-logo-bg);
     border-bottom: 1px solid rgba(29, 60, 108, 0.1);
   }
 
@@ -3267,13 +3305,10 @@ section {
   }
 
   .home-page .katie-intro-section,
-  .home-page .educational-services-section {
-    background: #fffdf8;
-  }
-
+  .home-page .educational-services-section,
   .home-page .katie-credentials-section,
   .home-page .quote-section {
-    background: #ffffff;
+    background: var(--brand-logo-bg);
   }
 
   .home-page .quote-section::before,
@@ -3290,7 +3325,7 @@ section {
     margin-left: auto;
   }
 
-  .home-page .katie-section.katie-intro-section > h2,
+  .home-page .katie-intro-heading h2,
   .home-page .katie-credentials-section h2,
   .home-page .quote-section h2,
   .home-page .educational-services-copy h2 {
@@ -3310,15 +3345,22 @@ section {
   }
 
   .home-page .katie-photo-column {
-    width: min(300px, 82vw);
-    margin: 0 auto 1.45rem;
+    width: min(270px, 76vw);
+    margin: 0 auto;
   }
 
   .home-page .katie-intro-copy {
-    padding-top: 0;
+    padding: 0;
   }
 
-  .home-page .katie-intro-text,
+  .home-page .katie-intro-text {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    font-size: 0.96rem;
+    line-height: 1.58;
+    text-align: left;
+  }
+
   .home-page .quote-section p,
   .home-page .educational-services-copy p {
     display: block;
@@ -3328,44 +3370,12 @@ section {
     text-align: left;
   }
 
-  .home-page .katie-intro-text p + p,
+  .home-page .katie-intro-text p + p {
+    margin-top: 0;
+  }
+
   .home-page .quote-section p + p {
-    margin-top: 0.85rem;
-  }
-
-  .home-page .katie-approach-carousel {
     margin-top: 1.15rem;
-    padding: 1rem 0 0.95rem;
-    border-top: 1px solid rgba(29, 60, 108, 0.12);
-    border-bottom: 1px solid rgba(29, 60, 108, 0.1);
-  }
-
-  .home-page .katie-approach-slide-header {
-    align-items: center;
-    gap: 0.75rem;
-    margin-bottom: 0.62rem;
-  }
-
-  .home-page .katie-approach-slide h3 {
-    color: var(--brand-heading);
-    font-size: 0.98rem;
-  }
-
-  .home-page .katie-approach-slide p {
-    font-size: 0.96rem;
-    line-height: 1.58;
-  }
-
-  .home-page .katie-approach-control {
-    width: 40px;
-    height: 40px;
-    background: #ffffff;
-    border-color: rgba(29, 60, 108, 0.18);
-    box-shadow: 0 8px 18px rgba(29, 60, 108, 0.08);
-  }
-
-  .home-page .katie-approach-dots {
-    margin-top: 0.82rem;
   }
 
   .home-page .katie-credentials-grid {
@@ -3421,6 +3431,12 @@ section {
   }
 }
 
+@media (max-width: 599px) {
+  .home-page .katie-intro-text {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (min-width: 700px) and (max-width: 799px) {
   .home-page .header-hero-home {
     padding: 4.2rem 2rem 2.35rem !important;
@@ -3454,7 +3470,7 @@ section {
     margin: 0;
     font-size: clamp(2.08rem, 4.9vw, 2.55rem);
     line-height: 1.14;
-    text-align: left !important;
+    text-align: center !important;
   }
 
   .home-page .home-hero-hamburger {
@@ -3492,5 +3508,9 @@ section {
 
   .home-page .katie-photo-column {
     width: min(280px, 82vw);
+  }
+
+  .home-page .katie-intro-text {
+    grid-template-columns: 1fr;
   }
 }

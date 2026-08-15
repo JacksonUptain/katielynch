@@ -85,8 +85,7 @@ const HeaderHero = ({ image, title, description, currentPageName }) => {
         {/* TEXT CENTERED */}
         <Col
           md={8}
-          
-          className="d-flex justify-content-left align-items-center text-center"
+          className="d-flex justify-content-center align-items-center text-center"
         >
           <div className="home-hero-textbox ">
             <h1 className="home-hero-title">
