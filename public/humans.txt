@@ -1,0 +1,11 @@
+/* TEAM */
+Educator and owner: Katie Lynch
+Business: Capturing Literacy LLC
+Contact: KatieLynchTutor@gmail.com
+Location: Manassas, Virginia, USA
+
+/* SITE */
+Language: English
+Canonical URL: https://capturingliteracy.com/
+Sitemap: https://capturingliteracy.com/sitemap.xml
+AI-readable overview: https://capturingliteracy.com/llms.txt

@@ -6,6 +6,7 @@ import "../src/ServiceCard.css";
 import JsonLd from "../src/JsonLd";
 import { buildMetadata, seoConfig } from "../src/seo";
 import { siteStructuredData } from "../src/structuredData";
+import RouteScrollReset from "../src/RouteScrollReset";
 
 export const metadata = {
   ...buildMetadata("home"),
@@ -24,6 +25,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <JsonLd data={siteStructuredData()} />
+        <RouteScrollReset />
         <div className="App">{children}</div>
       </body>
     </html>

@@ -98,12 +98,18 @@ export default function Blog({ initialBlogs = [] }) {
         id="weirdo"
         style={{
           backgroundColor: blog.color || "transparent",
-          backgroundImage: blog.color
-            ? "none"
-            : `url("${blog.image}")`
         }}
       >
-        
+        {!blog.color && blog.image && (
+          <img
+            className="blog-card-background"
+            src={blog.image}
+            alt=""
+            loading="lazy"
+            decoding="async"
+          />
+        )}
+
 
         {/* OVERLAY CONTENT */}
         <div className="blog-overlay" onDoubleClick={() => window.open(blog.file, "_blank")}>

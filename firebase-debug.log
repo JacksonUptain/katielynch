@@ -1,0 +1,169 @@
+[debug] [2026-08-15T23:26:10.996Z] ----------------------------------------------------------------------
+[debug] [2026-08-15T23:26:10.997Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy
+[debug] [2026-08-15T23:26:10.997Z] CLI Version:   15.22.4
+[debug] [2026-08-15T23:26:10.997Z] Platform:      darwin
+[debug] [2026-08-15T23:26:10.997Z] Node Version:  v26.4.0
+[debug] [2026-08-15T23:26:10.997Z] Detected Agent: unknown
+[debug] [2026-08-15T23:26:10.998Z] Time:          Sat Aug 15 2026 18:26:10 GMT-0500 (Central Daylight Time)
+[debug] [2026-08-15T23:26:10.998Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-08-15T23:26:11.461Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-08-15T23:26:11.461Z] > authorizing via signed-in user (jackson.uptain@gmail.com)
+[debug] [2026-08-15T23:26:11.461Z] [iam] checking project katielynch-63c34 for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2026-08-15T23:26:11.461Z] Checked if tokens are valid: false, expires at: 1786251595233
+[debug] [2026-08-15T23:26:11.462Z] Checked if tokens are valid: false, expires at: 1786251595233
+[debug] [2026-08-15T23:26:11.462Z] > refreshing access token with scopes: []
+[debug] [2026-08-15T23:26:11.462Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2026-08-15T23:26:11.462Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-08-15T23:26:11.612Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2026-08-15T23:26:11.612Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-08-15T23:26:11.621Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/katielynch-63c34:testIamPermissions [none]
+[debug] [2026-08-15T23:26:11.621Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/katielynch-63c34:testIamPermissions  x-goog-user-project=katielynch-63c34
+[debug] [2026-08-15T23:26:11.621Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/katielynch-63c34:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2026-08-15T23:26:11.742Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/katielynch-63c34:testIamPermissions 200
+[debug] [2026-08-15T23:26:11.742Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/katielynch-63c34:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2026-08-15T23:26:11.743Z] Checked if tokens are valid: true, expires at: 1786839970612
+[debug] [2026-08-15T23:26:11.743Z] Checked if tokens are valid: true, expires at: 1786839970612
+[debug] [2026-08-15T23:26:11.743Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/katielynch-63c34/serviceAccounts/katielynch-63c34@appspot.gserviceaccount.com:testIamPermissions [none]
+[debug] [2026-08-15T23:26:11.743Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/katielynch-63c34/serviceAccounts/katielynch-63c34@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2026-08-15T23:26:11.926Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/katielynch-63c34/serviceAccounts/katielynch-63c34@appspot.gserviceaccount.com:testIamPermissions 404
+[debug] [2026-08-15T23:26:11.926Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/katielynch-63c34/serviceAccounts/katielynch-63c34@appspot.gserviceaccount.com:testIamPermissions {"error":{"code":404,"message":"Unknown service account","status":"NOT_FOUND"}}
+[debug] [2026-08-15T23:26:11.928Z] [functions] service account IAM check errored, deploy may fail: Request to https://iam.googleapis.com/v1/projects/katielynch-63c34/serviceAccounts/katielynch-63c34@appspot.gserviceaccount.com:testIamPermissions had HTTP Error: 404, Unknown service account {"name":"FirebaseError","children":[],"context":{"body":{"error":{"code":404,"message":"Unknown service account","status":"NOT_FOUND"}},"response":{"statusCode":404}},"exit":1,"message":"Request to https://iam.googleapis.com/v1/projects/katielynch-63c34/serviceAccounts/katielynch-63c34@appspot.gserviceaccount.com:testIamPermissions had HTTP Error: 404, Unknown service account","status":404}
+[info] 
+[info] === Deploying to 'katielynch-63c34'...
+[info] 
+[info] i  deploying functions 
+[debug] [2026-08-15T23:26:11.931Z] Checked if tokens are valid: true, expires at: 1786839970612
+[debug] [2026-08-15T23:26:11.931Z] Checked if tokens are valid: true, expires at: 1786839970612
+[debug] [2026-08-15T23:26:11.931Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/katielynch-63c34/services/cloudresourcemanager.googleapis.com [none]
+[debug] [2026-08-15T23:26:11.931Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/katielynch-63c34/services/cloudresourcemanager.googleapis.com  x-goog-user-project=katielynch-63c34
+[debug] [2026-08-15T23:26:12.229Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/katielynch-63c34/services/cloudresourcemanager.googleapis.com 200
+[debug] [2026-08-15T23:26:12.229Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/katielynch-63c34/services/cloudresourcemanager.googleapis.com [omitted]
+[debug] [2026-08-15T23:26:12.237Z] Checked if tokens are valid: true, expires at: 1786839970612
+[debug] [2026-08-15T23:26:12.237Z] Checked if tokens are valid: true, expires at: 1786839970612
+[debug] [2026-08-15T23:26:12.237Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/projects/katielynch-63c34 [none]
+[debug] [2026-08-15T23:26:12.338Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/projects/katielynch-63c34 200
+[debug] [2026-08-15T23:26:12.338Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/projects/katielynch-63c34 {"projectNumber":"1026023205228","projectId":"katielynch-63c34","lifecycleState":"ACTIVE","name":"katielynch","labels":{"firebase":"enabled","firebase-core":"disabled"},"createTime":"2026-04-12T19:20:01.874Z"}
+[info] i  functions: preparing codebase default for deployment 
+[info] i  functions: ensuring required API cloudfunctions.googleapis.com is enabled... 
+[debug] [2026-08-15T23:26:12.340Z] Checked if tokens are valid: true, expires at: 1786839970612
+[debug] [2026-08-15T23:26:12.340Z] Checked if tokens are valid: true, expires at: 1786839970612
+[debug] [2026-08-15T23:26:12.340Z] Checked if tokens are valid: true, expires at: 1786839970612
+[debug] [2026-08-15T23:26:12.340Z] Checked if tokens are valid: true, expires at: 1786839970612
+[info] i  functions: ensuring required API cloudbuild.googleapis.com is enabled... 
+[debug] [2026-08-15T23:26:12.341Z] Checked if tokens are valid: true, expires at: 1786839970612
+[debug] [2026-08-15T23:26:12.341Z] Checked if tokens are valid: true, expires at: 1786839970612
+[info] i  artifactregistry: ensuring required API artifactregistry.googleapis.com is enabled... 
+[debug] [2026-08-15T23:26:12.341Z] Checked if tokens are valid: true, expires at: 1786839970612
+[debug] [2026-08-15T23:26:12.341Z] Checked if tokens are valid: true, expires at: 1786839970612
+[debug] [2026-08-15T23:26:12.341Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/katielynch-63c34/services/cloudfunctions.googleapis.com [none]
+[debug] [2026-08-15T23:26:12.342Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/katielynch-63c34/services/cloudfunctions.googleapis.com  x-goog-user-project=katielynch-63c34
+[debug] [2026-08-15T23:26:12.342Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/katielynch-63c34/services/runtimeconfig.googleapis.com [none]
+[debug] [2026-08-15T23:26:12.342Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/katielynch-63c34/services/runtimeconfig.googleapis.com  x-goog-user-project=katielynch-63c34
+[debug] [2026-08-15T23:26:12.344Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/katielynch-63c34/services/cloudbuild.googleapis.com [none]
+[debug] [2026-08-15T23:26:12.344Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/katielynch-63c34/services/cloudbuild.googleapis.com  x-goog-user-project=katielynch-63c34
+[debug] [2026-08-15T23:26:12.345Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/katielynch-63c34/services/artifactregistry.googleapis.com [none]
+[debug] [2026-08-15T23:26:12.345Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/katielynch-63c34/services/artifactregistry.googleapis.com  x-goog-user-project=katielynch-63c34
+[debug] [2026-08-15T23:26:12.599Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/katielynch-63c34/services/runtimeconfig.googleapis.com 200
+[debug] [2026-08-15T23:26:12.600Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/katielynch-63c34/services/runtimeconfig.googleapis.com [omitted]
+[debug] [2026-08-15T23:26:12.643Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/katielynch-63c34/services/cloudfunctions.googleapis.com 200
+[debug] [2026-08-15T23:26:12.643Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/katielynch-63c34/services/cloudfunctions.googleapis.com [omitted]
+[warn] ⚠  functions: missing required API cloudfunctions.googleapis.com. Enabling now... 
+[debug] [2026-08-15T23:26:12.643Z] Checked if tokens are valid: true, expires at: 1786839970612
+[debug] [2026-08-15T23:26:12.643Z] Checked if tokens are valid: true, expires at: 1786839970612
+[debug] [2026-08-15T23:26:12.643Z] >>> [apiv2][query] POST https://serviceusage.googleapis.com/v1/projects/katielynch-63c34/services/cloudfunctions.googleapis.com:enable [none]
+[debug] [2026-08-15T23:26:12.643Z] >>> [apiv2][(partial)header] POST https://serviceusage.googleapis.com/v1/projects/katielynch-63c34/services/cloudfunctions.googleapis.com:enable  x-goog-user-project=katielynch-63c34
+[debug] [2026-08-15T23:26:12.648Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/katielynch-63c34/services/cloudbuild.googleapis.com 200
+[debug] [2026-08-15T23:26:12.648Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/katielynch-63c34/services/cloudbuild.googleapis.com [omitted]
+[warn] ⚠  functions: missing required API cloudbuild.googleapis.com. Enabling now... 
+[debug] [2026-08-15T23:26:12.648Z] Checked if tokens are valid: true, expires at: 1786839970612
+[debug] [2026-08-15T23:26:12.648Z] Checked if tokens are valid: true, expires at: 1786839970612
+[debug] [2026-08-15T23:26:12.648Z] >>> [apiv2][query] POST https://serviceusage.googleapis.com/v1/projects/katielynch-63c34/services/cloudbuild.googleapis.com:enable [none]
+[debug] [2026-08-15T23:26:12.648Z] >>> [apiv2][(partial)header] POST https://serviceusage.googleapis.com/v1/projects/katielynch-63c34/services/cloudbuild.googleapis.com:enable  x-goog-user-project=katielynch-63c34
+[debug] [2026-08-15T23:26:12.654Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/katielynch-63c34/services/artifactregistry.googleapis.com 200
+[debug] [2026-08-15T23:26:12.654Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/katielynch-63c34/services/artifactregistry.googleapis.com [omitted]
+[warn] ⚠  artifactregistry: missing required API artifactregistry.googleapis.com. Enabling now... 
+[debug] [2026-08-15T23:26:12.654Z] Checked if tokens are valid: true, expires at: 1786839970612
+[debug] [2026-08-15T23:26:12.654Z] Checked if tokens are valid: true, expires at: 1786839970612
+[debug] [2026-08-15T23:26:12.654Z] >>> [apiv2][query] POST https://serviceusage.googleapis.com/v1/projects/katielynch-63c34/services/artifactregistry.googleapis.com:enable [none]
+[debug] [2026-08-15T23:26:12.654Z] >>> [apiv2][(partial)header] POST https://serviceusage.googleapis.com/v1/projects/katielynch-63c34/services/artifactregistry.googleapis.com:enable  x-goog-user-project=katielynch-63c34
+[debug] [2026-08-15T23:26:13.244Z] <<< [apiv2][status] POST https://serviceusage.googleapis.com/v1/projects/katielynch-63c34/services/artifactregistry.googleapis.com:enable 200
+[debug] [2026-08-15T23:26:13.245Z] <<< [apiv2][body] POST https://serviceusage.googleapis.com/v1/projects/katielynch-63c34/services/artifactregistry.googleapis.com:enable [omitted]
+[debug] [2026-08-15T23:26:13.358Z] <<< [apiv2][status] POST https://serviceusage.googleapis.com/v1/projects/katielynch-63c34/services/cloudfunctions.googleapis.com:enable 200
+[debug] [2026-08-15T23:26:13.358Z] <<< [apiv2][body] POST https://serviceusage.googleapis.com/v1/projects/katielynch-63c34/services/cloudfunctions.googleapis.com:enable [omitted]
+[debug] [2026-08-15T23:26:13.365Z] <<< [apiv2][status] POST https://serviceusage.googleapis.com/v1/projects/katielynch-63c34/services/cloudbuild.googleapis.com:enable 200
+[debug] [2026-08-15T23:26:13.365Z] <<< [apiv2][body] POST https://serviceusage.googleapis.com/v1/projects/katielynch-63c34/services/cloudbuild.googleapis.com:enable [omitted]
+[debug] [2026-08-15T23:26:23.372Z] Checked if tokens are valid: true, expires at: 1786839970612
+[debug] [2026-08-15T23:26:23.373Z] Checked if tokens are valid: true, expires at: 1786839970612
+[debug] [2026-08-15T23:26:23.373Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/katielynch-63c34/adminSdkConfig [none]
+[debug] [2026-08-15T23:26:23.714Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/katielynch-63c34/adminSdkConfig 200
+[debug] [2026-08-15T23:26:23.714Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/katielynch-63c34/adminSdkConfig {"projectId":"katielynch-63c34","databaseURL":"https://katielynch-63c34-default-rtdb.firebaseio.com","storageBucket":"katielynch-63c34.firebasestorage.app"}
+[debug] [2026-08-15T23:26:23.715Z] Checked if tokens are valid: true, expires at: 1786839970612
+[debug] [2026-08-15T23:26:23.715Z] Checked if tokens are valid: true, expires at: 1786839970612
+[debug] [2026-08-15T23:26:23.715Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/katielynch-63c34/configs [none]
+[debug] [2026-08-15T23:26:23.862Z] <<< [apiv2][status] GET https://runtimeconfig.googleapis.com/v1beta1/projects/katielynch-63c34/configs 200
+[debug] [2026-08-15T23:26:23.862Z] <<< [apiv2][body] GET https://runtimeconfig.googleapis.com/v1beta1/projects/katielynch-63c34/configs {}
+[debug] [2026-08-15T23:26:23.867Z] Validating nodejs source
+[warn] ⚠  functions: Couldn't find firebase-functions package in your source code. Have you run 'npm install'? 
+[debug] [2026-08-15T23:26:23.868Z] getFunctionsSDKVersion encountered error: Cannot find module 'firebase-functions'
+Require stack:
+- /usr/local/lib/node_modules/firebase-tools/lib/deploy/functions/runtimes/node/versioning.js
+- /usr/local/lib/node_modules/firebase-tools/lib/deploy/functions/runtimes/node/index.js
+- /usr/local/lib/node_modules/firebase-tools/lib/deploy/functions/runtimes/index.js
+- /usr/local/lib/node_modules/firebase-tools/lib/deploy/functions/prepare.js
+- /usr/local/lib/node_modules/firebase-tools/lib/emulator/functionsEmulatorShared.js
+- /usr/local/lib/node_modules/firebase-tools/lib/frameworks/index.js
+- /usr/local/lib/node_modules/firebase-tools/lib/deploy/hosting/prepare.js
+- /usr/local/lib/node_modules/firebase-tools/lib/deploy/hosting/index.js
+- /usr/local/lib/node_modules/firebase-tools/lib/deploy/index.js
+- /usr/local/lib/node_modules/firebase-tools/lib/commands/deploy.js
+- /usr/local/lib/node_modules/firebase-tools/lib/commands/index.js
+- /usr/local/lib/node_modules/firebase-tools/lib/index.js
+- /usr/local/lib/node_modules/firebase-tools/lib/bin/cli.js
+- /usr/local/lib/node_modules/firebase-tools/lib/bin/firebase.js {"code":"MODULE_NOT_FOUND","requireStack":["/usr/local/lib/node_modules/firebase-tools/lib/deploy/functions/runtimes/node/versioning.js","/usr/local/lib/node_modules/firebase-tools/lib/deploy/functions/runtimes/node/index.js","/usr/local/lib/node_modules/firebase-tools/lib/deploy/functions/runtimes/index.js","/usr/local/lib/node_modules/firebase-tools/lib/deploy/functions/prepare.js","/usr/local/lib/node_modules/firebase-tools/lib/emulator/functionsEmulatorShared.js","/usr/local/lib/node_modules/firebase-tools/lib/frameworks/index.js","/usr/local/lib/node_modules/firebase-tools/lib/deploy/hosting/prepare.js","/usr/local/lib/node_modules/firebase-tools/lib/deploy/hosting/index.js","/usr/local/lib/node_modules/firebase-tools/lib/deploy/index.js","/usr/local/lib/node_modules/firebase-tools/lib/commands/deploy.js","/usr/local/lib/node_modules/firebase-tools/lib/commands/index.js","/usr/local/lib/node_modules/firebase-tools/lib/index.js","/usr/local/lib/node_modules/firebase-tools/lib/bin/cli.js","/usr/local/lib/node_modules/firebase-tools/lib/bin/firebase.js"]}
+[debug] [2026-08-15T23:26:23.868Z] checkFunctionsSDKVersion encountered error: Invalid Version:  {}
+[debug] [2026-08-15T23:26:23.869Z] > [functions] package.json contents: {
+  "name": "capturing-literacy-firebase-automation",
+  "private": true,
+  "engines": {
+    "node": "22"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "firebase-functions": "^7.3.2"
+  },
+  "overrides": {
+    "uuid": "^11.1.1"
+  }
+}
+[debug] [2026-08-15T23:26:23.869Z] Building nodejs source
+[info] i  functions: Loading and analyzing source code for codebase default to determine what to deploy 
+[debug] [2026-08-15T23:26:23.869Z] Could not parse firebase-functions version '' into semver.
+[debug] [2026-08-15T23:26:23.869Z] Could not find functions.yaml. Must use http discovery
+[debug] [2026-08-15T23:26:23.879Z] Error: Cannot find module 'firebase-functions'
+Require stack:
+- /usr/local/lib/node_modules/firebase-tools/lib/deploy/functions/runtimes/node/index.js
+- /usr/local/lib/node_modules/firebase-tools/lib/deploy/functions/runtimes/index.js
+- /usr/local/lib/node_modules/firebase-tools/lib/deploy/functions/prepare.js
+- /usr/local/lib/node_modules/firebase-tools/lib/emulator/functionsEmulatorShared.js
+- /usr/local/lib/node_modules/firebase-tools/lib/frameworks/index.js
+- /usr/local/lib/node_modules/firebase-tools/lib/deploy/hosting/prepare.js
+- /usr/local/lib/node_modules/firebase-tools/lib/deploy/hosting/index.js
+- /usr/local/lib/node_modules/firebase-tools/lib/deploy/index.js
+- /usr/local/lib/node_modules/firebase-tools/lib/commands/deploy.js
+- /usr/local/lib/node_modules/firebase-tools/lib/commands/index.js
+- /usr/local/lib/node_modules/firebase-tools/lib/index.js
+- /usr/local/lib/node_modules/firebase-tools/lib/bin/cli.js
+- /usr/local/lib/node_modules/firebase-tools/lib/bin/firebase.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1568:15)
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1122:27)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1173:12)
+    at require.resolve (node:internal/modules/helpers:209:31)
+    at Delegate.findFunctionsBinary (/usr/local/lib/node_modules/firebase-tools/lib/deploy/functions/runtimes/node/index.js:101:33)
+    at Delegate.spawnFunctionsProcess (/usr/local/lib/node_modules/firebase-tools/lib/deploy/functions/runtimes/node/index.js:131:30)
+    at Delegate.serveAdmin (/usr/local/lib/node_modules/firebase-tools/lib/deploy/functions/runtimes/node/index.js:152:35)
+    at Delegate.discoverBuild (/usr/local/lib/node_modules/firebase-tools/lib/deploy/functions/runtimes/node/index.js:192:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async loadCodebases (/usr/local/lib/node_modules/firebase-tools/lib/deploy/functions/prepare.js:393:33)
+[error] 
+[error] Error: An unexpected error has occurred.

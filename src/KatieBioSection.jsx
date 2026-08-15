@@ -19,6 +19,10 @@ export default function KatieBioSection({ className = "" }) {
                 src="https://lh3.googleusercontent.com/a-/ALV-UjUgoM4CLOYApN3oXhKtgtbruhtm5ymFxY6IEO-uoyZToLRE8B4=s330-p-k-rw-no"
                 alt="Katie Lynch"
                 className="katie-photo"
+                width={330}
+                height={330}
+                loading="lazy"
+                decoding="async"
               />
               <span className="katie-photo-overlay">Contact Me</span>
             </Link>

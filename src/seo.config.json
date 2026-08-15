@@ -1,10 +1,24 @@
 {
-  "siteName": "Katie Lynch | Capturing Literacy",
+  "siteName": "Capturing Literacy",
   "siteUrl": "https://capturingliteracy.com",
-  "defaultTitle": "Katie Lynch | Certified Academic Language Therapist & IEW Instructor",
-  "titleTemplate": "%s | Katie Lynch, Capturing Literacy",
-  "defaultDescription": "Katie Lynch of Capturing Literacy is a Certified Academic Language Therapist and IEW instructor offering dyslexia remediation, structured literacy, writing, grammar, and virtual classes for students in Virginia and beyond.",
-  "defaultImage": "/images/capturingLiteracy.png",
+  "contentLastModified": "2026-08-15",
+  "defaultTitle": "Dyslexia Tutor & IEW Instructor | Katie Lynch",
+  "titleTemplate": "%s | Capturing Literacy",
+  "defaultDescription": "Katie Lynch offers dyslexia remediation, structured literacy tutoring, and live IEW writing classes in Northern Virginia and online.",
+  "logoImage": "/images/capturingLiteracy.png",
+  "defaultImage": "/opengraph-image.png",
+  "defaultImageWidth": 1200,
+  "defaultImageHeight": 630,
+  "defaultImageAlt": "Katie Lynch and Capturing Literacy literacy tutoring services",
+  "keywords": [
+    "dyslexia tutor Manassas VA",
+    "Certified Academic Language Therapist",
+    "structured literacy tutoring",
+    "dysgraphia support",
+    "IEW writing instructor",
+    "online writing classes",
+    "Northern Virginia reading tutor"
+  ],
   "locale": "en_US",
   "business": {
     "displayName": "Katie Lynch | Capturing Literacy",
@@ -61,28 +75,28 @@
   },
   "pages": {
     "home": {
-      "title": "Katie Lynch | Capturing Literacy Tutoring & Virtual Classes",
-      "description": "Katie Lynch provides academic language therapy, structured literacy, dyslexia support, and IEW writing instruction for students in Manassas, Northern Virginia, and virtual classes online.",
+      "title": "Dyslexia Tutor & IEW Instructor | Katie Lynch",
+      "description": "Katie Lynch provides dyslexia tutoring, structured literacy, and IEW writing classes in Manassas, Northern Virginia, and online.",
       "path": "/"
     },
     "about": {
-      "title": "About Katie Lynch | Certified Academic Language Therapist",
-      "description": "Learn about Katie Lynch, a Certified Academic Language Therapist and IEW instructor specializing in reading, spelling, dyslexia, dysgraphia, writing instruction, and virtual classes from Manassas, Virginia.",
+      "title": "About Katie Lynch, CALT & IEW Instructor",
+      "description": "Meet Katie Lynch, a Certified Academic Language Therapist and IEW instructor specializing in dyslexia, dysgraphia, reading, spelling, and writing.",
       "path": "/about"
     },
     "services": {
-      "title": "Academic Language Therapy, Dyslexia Tutoring & Writing Instruction",
-      "description": "Explore educational services from Katie Lynch, including dyslexia therapy, dysgraphia support, structured literacy, reading, spelling, IEW writing instruction, and virtual classes for Virginia and online students.",
+      "title": "Dyslexia Tutoring & IEW Writing Classes",
+      "description": "Explore dyslexia and dysgraphia therapy, structured literacy tutoring, and live IEW writing and grammar classes in Northern Virginia and online.",
       "path": "/educational-services"
     },
     "serviceDetail": {
       "title": "Educational Service Details",
-      "description": "Learn more about this Capturing Literacy educational service from Katie Lynch, a Certified Academic Language Therapist and IEW instructor serving Manassas, Northern Virginia, and virtual students.",
+      "description": "View details, schedule, pricing, and enrollment information for this Capturing Literacy educational service from Katie Lynch.",
       "path": "/educational-services"
     },
     "blog": {
       "title": "Literacy Resources for Parents & Students",
-      "description": "Read literacy resources, dyslexia strategies, writing tips, and parent guidance from Katie Lynch and Capturing Literacy for Virginia families and virtual students.",
+      "description": "Explore literacy resources, dyslexia guidance, and writing tips curated by Katie Lynch for parents and students in Virginia and online.",
       "path": "/resources"
     },
     "essay": {
@@ -91,8 +105,8 @@
       "path": "/student-showcase"
     },
     "contact": {
-      "title": "Contact Katie Lynch | Capturing Literacy",
-      "description": "Contact Katie Lynch to discuss academic language therapy, reading, spelling, writing, dyslexia support, dysgraphia support, in-person tutoring in Northern Virginia, or virtual classes.",
+      "title": "Contact Katie Lynch",
+      "description": "Contact Katie Lynch about dyslexia therapy, structured literacy, reading, spelling, IEW writing, or virtual classes in Northern Virginia and online.",
       "path": "/contact-katie-lynch"
     },
     "notFound": {

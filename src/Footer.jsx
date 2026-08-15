@@ -17,11 +17,18 @@ export default function Footer() {
                 target="_blank" 
                 rel="noopener noreferrer"
               >
-                <img 
-                  src={assetPath("/images/IEW.png")}
-                  alt="Experience Instructor Award" 
-                  className="footer-award"
-                />
+                <picture>
+                  <source srcSet={assetPath("/images/IEW.avif")} type="image/avif" />
+                  <img
+                    src={assetPath("/images/IEW.png")}
+                    alt="Institute for Excellence in Writing Experienced Instructor badge"
+                    className="footer-award"
+                    width={360}
+                    height={360}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
               </a>
             
               <a 
@@ -31,8 +38,12 @@ export default function Footer() {
               >
                 <img 
                   src={assetPath("/images/ALTA.jpg")}
-                  alt="Alta Logo & Link" 
+                  alt="Academic Language Therapy Association logo"
                   className="footer-award footer-award-framed"
+                  width={474}
+                  height={280}
+                  loading="lazy"
+                  decoding="async"
                 />
               </a>
             </div>

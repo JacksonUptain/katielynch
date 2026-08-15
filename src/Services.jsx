@@ -23,10 +23,20 @@ export default function Services({ initialServices = [] }) {
 
       <section className="services-page-intro">
         <div className="services-page-intro-photo">
-          <img
-            src={assetPath("/images/educational-services.png")}
-            alt="Katie Lynch guiding a student through a literacy activity"
-          />
+          <picture>
+            <source
+              srcSet={assetPath("/images/educational-services.avif")}
+              type="image/avif"
+            />
+            <img
+              src={assetPath("/images/educational-services.png")}
+              alt="Katie Lynch guiding a student through a literacy activity"
+              width={762}
+              height={900}
+              loading="lazy"
+              decoding="async"
+            />
+          </picture>
         </div>
 
         <div className="services-page-intro-copy">

@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { scheduleScrollToPageTop } from "./RouteScrollReset";
 
 export default function ServiceCard({ title, description, image, link, reverse, className = '', style = {} }) {
   const router = useRouter();
@@ -11,12 +12,20 @@ export default function ServiceCard({ title, description, image, link, reverse, 
       style={style}
       onClick={() => {
         if (link) {
-          router.push(link);
+          scheduleScrollToPageTop();
+          router.push(link, { scroll: true });
         }
       }}
     >
       <div className="service-image">
-        {image && <img src={image} alt={title} />}
+        {image && (
+          <img
+            src={image}
+            alt={title}
+            loading="lazy"
+            decoding="async"
+          />
+        )}
       </div>
 
       <div className="service-content">

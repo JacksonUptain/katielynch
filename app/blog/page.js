@@ -4,7 +4,9 @@ import JsonLd from "../../src/JsonLd";
 import { buildMetadata } from "../../src/seo";
 import { webPageStructuredData } from "../../src/structuredData";
 
-export const metadata = buildMetadata("blog");
+export const metadata = buildMetadata("blog", {
+  robots: { index: false, follow: true },
+});
 
 export default async function BlogPage() {
   const blogs = await getFirebaseSection("Blog");

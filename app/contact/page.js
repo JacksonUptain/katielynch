@@ -3,7 +3,9 @@ import JsonLd from "../../src/JsonLd";
 import { buildMetadata } from "../../src/seo";
 import { webPageStructuredData } from "../../src/structuredData";
 
-export const metadata = buildMetadata("contact");
+export const metadata = buildMetadata("contact", {
+  robots: { index: false, follow: true },
+});
 
 export default function ContactPage() {
   return (

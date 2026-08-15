@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import Link from "next/link";
 import { assetPath } from "./sitePaths";
 import { pagePaths } from "./routes";
+import ContactCta from "./ContactCta";
 
 
 export default function Home() {
@@ -46,7 +47,12 @@ export default function Home() {
 
   return (
     <div className="home-page">
-      <HeaderHero image={assetPath("/images/capturingLiteracy.png")} title={"Katie Lynch"} description={"Certified Academic Language Therapist | IEW Instructor | Dyslexia Specialist"} currentPageName={"Home"}  />
+      <HeaderHero
+        image={assetPath("/images/capturingLiteracy.png")}
+        title={"Katie Lynch"}
+        description={"Certified Academic Language Therapist providing dyslexia, writing, and IEW instruction in Manassas and Northern Virginia."}
+        currentPageName={"Home"}
+      />
 
       <nav className="mobile-home-jump-nav" aria-label="Home page sections">
         <a href="#bio">About</a>
@@ -76,10 +82,20 @@ export default function Home() {
             
             <section id="home-services" className="educational-services-section reveal-on-scroll">
               <div className="educational-services-photo">
-                <img
-                  src={assetPath("/images/educational-services.png")}
-                  alt="Katie Lynch guiding a student through a literacy activity"
-                />
+                <picture>
+                  <source
+                    srcSet={assetPath("/images/educational-services.avif")}
+                    type="image/avif"
+                  />
+                  <img
+                    src={assetPath("/images/educational-services.png")}
+                    alt="Katie Lynch guiding a student through a literacy activity"
+                    width={762}
+                    height={900}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
               </div>
 
               <div className="educational-services-copy">
@@ -95,8 +111,9 @@ export default function Home() {
                 </Link>
               </div>
             </section>
-            
-        
+
+            <ContactCta className="reveal-on-scroll" />
+
             <Footer />
 
     </div>

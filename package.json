@@ -24,6 +24,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "performance:check": "node scripts/check-performance.mjs",
+    "seo:check": "node scripts/check-seo.mjs",
     "start": "npx serve@latest out",
     "serve": "npx serve@latest out",
     "export": "next build"

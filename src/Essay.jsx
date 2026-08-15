@@ -84,7 +84,7 @@ const otherEssays = essaysData.filter(e => !e.featured);
         </div>
 
         <div className="essay-info">
-          <h1>{featuredEssay.title}</h1>
+          <h2>{featuredEssay.title}</h2>
           <p>{featuredEssay.description}</p>
         </div>
       </section>

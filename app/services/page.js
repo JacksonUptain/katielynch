@@ -7,7 +7,9 @@ import {
   webPageStructuredData,
 } from "../../src/structuredData";
 
-export const metadata = buildMetadata("services");
+export const metadata = buildMetadata("services", {
+  robots: { index: false, follow: true },
+});
 
 export default async function ServicesPage() {
   const services = await getFirebaseSection("Services");

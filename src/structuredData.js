@@ -8,6 +8,15 @@ const localBusinessId = absoluteUrl("/#local-business");
 const personId = absoluteUrl("/#katie-lynch");
 const websiteId = absoluteUrl("/#website");
 
+const pageTypes = {
+  about: "AboutPage",
+  services: "CollectionPage",
+  blog: "CollectionPage",
+  essay: "CollectionPage",
+  contact: "ContactPage",
+  serviceDetail: "ItemPage",
+};
+
 function toAbsoluteUrl(url = "/") {
   if (!url) return absoluteUrl("/");
   if (/^https?:\/\//i.test(url)) return url;
@@ -62,8 +71,49 @@ function serviceDescription(service = {}) {
   ).trim();
 }
 
+function breadcrumbNode(items = [], idPath = "/") {
+  return {
+    "@type": "BreadcrumbList",
+    "@id": `${absoluteUrl(idPath)}#breadcrumb`,
+    itemListElement: items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.name,
+      item: absoluteUrl(item.path),
+    })),
+  };
+}
+
+function webPageNode(pageKey, overrides = {}) {
+  const page = getPageSeo(pageKey);
+  const path = overrides.path || page.path || "/";
+  const title = overrides.title || page.title || seoConfig.defaultTitle;
+  const description =
+    overrides.description || page.description || seoConfig.defaultDescription;
+  const image = toAbsoluteUrl(overrides.image || page.image || seoConfig.defaultImage);
+  const url = absoluteUrl(path);
+  const breadcrumbId = path === "/" ? undefined : `${url}#breadcrumb`;
+
+  return compactObject({
+    "@type": overrides.type || pageTypes[pageKey] || "WebPage",
+    "@id": `${url}#webpage`,
+    url,
+    name: title,
+    description,
+    isPartOf: { "@id": websiteId },
+    about: { "@id": localBusinessId },
+    breadcrumb: breadcrumbId ? { "@id": breadcrumbId } : undefined,
+    primaryImageOfPage: {
+      "@type": "ImageObject",
+      url: image,
+    },
+    inLanguage: "en-US",
+  });
+}
+
 export function siteStructuredData() {
   const defaultImage = toAbsoluteUrl(seoConfig.defaultImage);
+  const logoImage = toAbsoluteUrl(seoConfig.logoImage || seoConfig.defaultImage);
 
   return {
     "@context": "https://schema.org",
@@ -85,7 +135,7 @@ export function siteStructuredData() {
         alternateName: business.alternateNames,
         description: seoConfig.defaultDescription,
         url: absoluteUrl("/"),
-        logo: defaultImage,
+        logo: logoImage,
         image: [defaultImage],
         telephone: business.telephone,
         email: business.email,
@@ -104,9 +154,19 @@ export function siteStructuredData() {
         jobTitle: business.jobTitle,
         description: business.personDescription,
         url: absoluteUrl(pagePaths.about),
-        image: toAbsoluteUrl(business.personImage || seoConfig.defaultImage),
+        image: toAbsoluteUrl(
+          business.personImage || seoConfig.logoImage || seoConfig.defaultImage
+        ),
         email: business.email,
         telephone: business.telephone,
+        contactPoint: {
+          "@type": "ContactPoint",
+          contactType: "customer inquiries",
+          email: business.email,
+          telephone: business.telephone,
+          availableLanguage: "English",
+          areaServed: "US",
+        },
         worksFor: { "@id": localBusinessId },
         homeLocation: {
           "@type": "Place",
@@ -125,26 +185,28 @@ export function webPageStructuredData(pageKey, overrides = {}) {
   const page = getPageSeo(pageKey);
   const path = overrides.path || page.path || "/";
   const title = overrides.title || page.title || seoConfig.defaultTitle;
-  const description =
-    overrides.description || page.description || seoConfig.defaultDescription;
-  const image = toAbsoluteUrl(overrides.image || page.image || seoConfig.defaultImage);
-  const url = absoluteUrl(path);
+  const pageNode = webPageNode(pageKey, overrides);
 
-  return compactObject({
+  if (path === "/") {
+    return {
+      "@context": "https://schema.org",
+      ...pageNode,
+    };
+  }
+
+  return {
     "@context": "https://schema.org",
-    "@type": "WebPage",
-    "@id": `${url}#webpage`,
-    url,
-    name: title,
-    description,
-    isPartOf: { "@id": websiteId },
-    about: { "@id": localBusinessId },
-    primaryImageOfPage: {
-      "@type": "ImageObject",
-      url: image,
-    },
-    inLanguage: "en-US",
-  });
+    "@graph": [
+      pageNode,
+      breadcrumbNode(
+        [
+          { name: "Home", path: "/" },
+          { name: title, path },
+        ],
+        path
+      ),
+    ],
+  };
 }
 
 export function servicesItemListStructuredData(services = []) {
@@ -180,4 +242,37 @@ export function serviceStructuredData(service = {}, includeContext = true) {
     areaServed: areaServed(),
     mainEntityOfPage: url,
   });
+}
+
+export function servicePageStructuredData(service = {}) {
+  const path = servicePath(service);
+  const title = String(service.title || "Educational Service").trim();
+  const description = serviceDescription(service);
+  const image = service.image || seoConfig.defaultImage;
+  const pageNode = webPageNode("serviceDetail", {
+    type: "ItemPage",
+    path,
+    title,
+    description,
+    image,
+  });
+  const serviceNode = serviceStructuredData(service, false);
+
+  pageNode.mainEntity = { "@id": serviceNode["@id"] };
+
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      pageNode,
+      breadcrumbNode(
+        [
+          { name: "Home", path: "/" },
+          { name: "Educational Services", path: pagePaths.services },
+          { name: title, path },
+        ],
+        path
+      ),
+      serviceNode,
+    ],
+  };
 }

@@ -6,9 +6,20 @@ import {  List } from "react-bootstrap-icons"; // hamburger icon
 
 import Link from "next/link";
 import { pagePaths } from "./routes";
+import DesktopSiteHeader from "./DesktopSiteHeader";
+import { assetPath } from "./sitePaths";
 
-const HeaderHero = ({ image, title, description, currentPageName }) => {
+const HeaderHero = ({
+  image,
+  imageAlt = "Capturing Literacy butterfly and pencil logo",
+  title,
+  description,
+  currentPageName,
+}) => {
   const [show, setShow] = useState(false);
+  const optimizedBrandImage = String(image || "").includes("capturingLiteracy.png")
+    ? assetPath("/images/capturingLiteracy.avif")
+    : null;
 
   const restorePageScroll = () => {
     document.body.style.overflow = "";
@@ -24,11 +35,12 @@ const HeaderHero = ({ image, title, description, currentPageName }) => {
 
   return (
     <>
-      
+      <DesktopSiteHeader revealOnScroll={currentPageName === "Home"} />
+
       {currentPageName !== "Home" && (
         <>
 
-      <div className="header-hero">
+      <div className="header-hero desktop-header-present">
         
         <Container fluid className="p-0">
           <Row className="g-0 align-items-center">
@@ -36,7 +48,18 @@ const HeaderHero = ({ image, title, description, currentPageName }) => {
             {/* LEFT IMAGE */}
             <Col md={3} className="image-col">
               <Link href="/" aria-label="Go to home page">
-                <img src={image} alt={title} className="hero-image" />
+                <picture className="hero-picture">
+                  {optimizedBrandImage && <source srcSet={optimizedBrandImage} type="image/avif" />}
+                  <img
+                    src={image}
+                    alt={imageAlt}
+                    className="hero-image"
+                    width={863}
+                    height={863}
+                    fetchPriority="high"
+                    decoding="async"
+                  />
+                </picture>
               </Link>
             </Col>
 
@@ -79,7 +102,18 @@ const HeaderHero = ({ image, title, description, currentPageName }) => {
       <Row className="g-0 h-100">
         {/* IMAGE LEFT */}
         <Col md={4} className="p-0 h-100 d-flex justify-content-center align-items-center text-center">
-          <img src={image} alt={title} className="object-fit-cover"/>
+          <picture className="home-brand-picture">
+            {optimizedBrandImage && <source srcSet={optimizedBrandImage} type="image/avif" />}
+            <img
+              src={image}
+              alt={imageAlt}
+              className="object-fit-cover"
+              width={863}
+              height={863}
+              fetchPriority="high"
+              decoding="async"
+            />
+          </picture>
         </Col>
 
         {/* TEXT CENTERED */}

@@ -7,6 +7,11 @@ on:
       - main
       - master
   workflow_dispatch:
+  repository_dispatch:
+    types:
+      - firebase-content-updated
+  schedule:
+    - cron: "*/30 * * * *"
 
 permissions:
   contents: read
@@ -18,8 +23,45 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  check-content:
+    runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.compare.outputs.changed }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Compare Firebase content version
+        id: compare
+        shell: bash
+        env:
+          LIVE_CONTENT_VERSION_URL: https://capturingliteracy.com/content-version.json
+        run: |
+          if [ "${{ github.event_name }}" != "schedule" ]; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          current_version="$(node scripts/firebase-content-fingerprint.mjs)"
+          live_version="$(node -e '(async () => { const url = process.env.LIVE_CONTENT_VERSION_URL; const response = await fetch(url, { cache: "no-store" }); if (!response.ok) process.exit(2); const data = await response.json(); if (!data.version) process.exit(3); console.log(data.version); })().catch(() => process.exit(4));' 2>/dev/null || true)"
+
+          if [ -z "$live_version" ] || [ "$current_version" != "$live_version" ]; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "Firebase content changed or the live version could not be read."
+          else
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "Firebase content matches the live site."
+          fi
+
   build:
     runs-on: ubuntu-latest
+    needs: check-content
+    if: ${{ needs.check-content.outputs.changed == 'true' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -41,6 +83,12 @@ jobs:
         env:
           NEXT_PUBLIC_SITE_URL: https://capturingliteracy.com
           NEXT_PUBLIC_BASE_PATH: ""
+
+      - name: Validate SEO export
+        run: npm run seo:check
+
+      - name: Validate performance-sensitive assets
+        run: npm run performance:check
 
       - name: Add GitHub Pages files
         run: |

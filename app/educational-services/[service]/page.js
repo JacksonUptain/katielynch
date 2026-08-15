@@ -4,7 +4,7 @@ import {
   getFirebaseSectionResult,
 } from "../../../src/firebaseData";
 import JsonLd from "../../../src/JsonLd";
-import { buildMetadata } from "../../../src/seo";
+import { buildMetadata, fitMetaDescription } from "../../../src/seo";
 import {
   findServiceByRouteParam,
   pagePaths,
@@ -12,7 +12,7 @@ import {
   serviceSlug,
 } from "../../../src/routes";
 import {
-  serviceStructuredData,
+  servicePageStructuredData,
   webPageStructuredData,
 } from "../../../src/structuredData";
 
@@ -46,7 +46,9 @@ export async function generateMetadata({ params }) {
 
   return buildMetadata("serviceDetail", {
     title: currentService.title,
-    description: `${description} Katie Lynch offers in-person support in Manassas and Northern Virginia plus virtual classes for online students.`,
+    description: fitMetaDescription(
+      `${description} Available in Manassas and Northern Virginia, with virtual instruction online.`
+    ),
     path: servicePath(currentService),
     image: currentService.image || undefined,
   });
@@ -57,7 +59,7 @@ export default async function EducationalServicePage({ params }) {
   const result = await getFirebaseSectionResult("Services");
   const currentService = findServiceByRouteParam(result.items, service);
   const structuredData = currentService
-    ? serviceStructuredData(currentService)
+    ? servicePageStructuredData(currentService)
     : webPageStructuredData("serviceDetail", {
         title: "Service Details",
         path: `${pagePaths.services}/${service}`,
