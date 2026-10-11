@@ -6,57 +6,47 @@ import Footer from './Footer';
 import { useFirebaseSection } from './useFirebaseSection';
 import { assetPath } from './sitePaths';
 
-
-
 export default function Essay({ initialEssays = [] }) {
-  
+  const essaysData = useFirebaseSection("Essays", initialEssays).items || [];
 
-const essaysData = useFirebaseSection("Essays", initialEssays).items || [];
+  const featuredEssay = essaysData.find(e => e.featured) || {
+    title: "Loading",
+    description: "Loading...",
+    preview: "",
+    file: "#",
+    date: "",
+  };
 
-const featuredEssay = essaysData.find(e => e.featured) || {
-  title: "Loading",
-  description: "Loading...",
-  preview: "",
-  file: "#",
-  date: "",
-};
-
-const otherEssays = essaysData.filter(e => !e.featured);
-
-  
-
-
-
+  // `featured` is legacy content and is stored as a non-empty string on every
+  // essay. Exclude only the essay actually selected for the hero instead of
+  // treating every truthy `featured` value as a boolean flag.
+  const otherEssays = essaysData.filter(e => e !== featuredEssay);
 
   const [search, setSearch] = useState("");
   const [sort, setSort] = useState("newest");
 
-
-
-
   const filteredEssays = [...otherEssays]
-  .filter(e =>
-    String(e.title || "").toLowerCase().includes(search.toLowerCase()) ||
-    String(e.description || "").toLowerCase().includes(search.toLowerCase())
-  )
-  .sort((a, b) => {
-    switch (sort) {
-      case "newest":
-        return new Date(b.date) - new Date(a.date);
-      case "oldest":
-        return new Date(a.date) - new Date(b.date);
-      case "az":
-        return String(a.title || "").localeCompare(String(b.title || ""));
-      case "za":
-        return String(b.title || "").localeCompare(String(a.title || ""));
-      default:
-        return 0;
-    }
-  });
+    .filter(e =>
+      String(e.title || "").toLowerCase().includes(search.toLowerCase()) ||
+      String(e.description || "").toLowerCase().includes(search.toLowerCase())
+    )
+    .sort((a, b) => {
+      switch (sort) {
+        case "newest":
+          return new Date(b.date) - new Date(a.date);
+        case "oldest":
+          return new Date(a.date) - new Date(b.date);
+        case "az":
+          return String(a.title || "").localeCompare(String(b.title || ""));
+        case "za":
+          return String(b.title || "").localeCompare(String(a.title || ""));
+        default:
+          return 0;
+      }
+    });
 
   return (
     <div>
-
       <HeaderHero
         image={assetPath("/images/capturingLiteracy.png")}
         title={"Student Showcase"}
@@ -64,7 +54,6 @@ const otherEssays = essaysData.filter(e => !e.featured);
         currentPageName={"Student Showcase"}
       />
 
-      
       <section className="essay-hero">
         <div className="essay-preview">
           <a
@@ -106,11 +95,8 @@ const otherEssays = essaysData.filter(e => !e.featured);
         </select>
       </div>
 
-      
       <div className="essay-container">
-       
         {filteredEssays.map((essay, index) => (
-          
           <a
             key={index}
             href={essay.file}
@@ -118,7 +104,6 @@ const otherEssays = essaysData.filter(e => !e.featured);
             rel="noopener noreferrer"
             className="essay-card-link"
           >
-            
             <div className="essay-card">
               <div className="essay-title">{essay.title}</div>
               <div className="essay-date">{essay.date}</div>
@@ -136,7 +121,6 @@ const otherEssays = essaysData.filter(e => !e.featured);
       </div>
 
       <Footer />
-
     </div>
   );
 }
