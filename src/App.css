@@ -625,6 +625,12 @@ section {
   margin-top: 1rem;
 }
 
+.footer-copy a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
 /* Responsive */
 @media (max-width: 600px) {
   .site-footer {

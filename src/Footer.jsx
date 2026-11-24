@@ -63,6 +63,9 @@ export default function Footer() {
 
           <p className="footer-copy">Manassas, Virginia | In-person and virtual literacy tutoring</p>
           <p className="footer-copy">&copy; 2026 Katie Lynch | Capturing Literacy LLC</p>
+          <p className="footer-copy">
+            Website by <a href="https://huntsvillesoftware.com" target="_blank" rel="noopener">Huntsville Software</a>
+          </p>
         </footer>
 
    
